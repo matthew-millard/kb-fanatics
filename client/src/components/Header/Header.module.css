@@ -1,0 +1,41 @@
+.header {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 100%;
+  grid-template-areas: '. l l n n n n n s u si .';
+}
+
+/* Center Items */
+.header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  grid-area: l;
+}
+
+.navLinks {
+  grid-area: n;
+}
+
+.search {
+  grid-area: s;
+}
+
+.account {
+  grid-area: a;
+}
+
+.userControls {
+  display: flex;
+  gap: 1rem;
+  grid-area: u;
+}
+
+.socialIcons {
+  grid-area: si;
+}
