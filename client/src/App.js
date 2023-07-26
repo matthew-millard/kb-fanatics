@@ -4,9 +4,15 @@ import { Footer, Header, Main } from './components';
 function App() {
   return (
     <div className={styles.pageContainer}>
-      <Header className={styles.header} />
-      <Main className={styles.main} />
-      <Footer className={styles.footer} />
+      <div className={styles.header}>
+        <Header />
+      </div>
+      <div className={styles.main}>
+        <Main />
+      </div>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </div>
   );
 }
