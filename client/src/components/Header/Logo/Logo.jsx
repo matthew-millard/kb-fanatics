@@ -3,7 +3,7 @@ import styles from './Logo.module.css';
 function Logo() {
   return (
     <a href="/" style={{ 'text-decoration': 'none' }}>
-      <span className={styles.logo}>Keebs World</span>
+      <span className={styles.logo}>KYBDS</span>
     </a>
   );
 }

@@ -1,6 +1,6 @@
 import Footer from './Footer';
-import Header from './Header';
+import { Header, MobileHeader } from './Header';
 import Main from './Main';
 import Sidebar from './Sidebar';
 
-export { Footer, Header, Main, Sidebar };
+export { Footer, Header, MobileHeader, Main, Sidebar };
