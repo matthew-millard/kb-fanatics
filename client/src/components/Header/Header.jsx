@@ -6,7 +6,7 @@ import Account from './Account';
 import Cart from './Cart';
 import SocialIcons from './SocialIcons';
 
-function Header() {
+export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -33,4 +33,4 @@ function Header() {
   );
 }
 
-export default Header;
+export { NavLinks, Account, Cart, SocialIcons, Logo };

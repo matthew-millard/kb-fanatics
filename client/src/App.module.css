@@ -1,13 +1,12 @@
 .pageContainer {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 100px auto 200px;
+  grid-template-columns: 5% 1fr 5%;
+  grid-template-rows: 100px auto 100px;
   grid-template-areas:
-    'h h h h h h h h h h h h'
-    'm m m m m m m m m m m m'
-    'f f f f f f f f f f f f';
-  gap: 2rem;
+    '. h .'
+    '. m .'
+    '. f .';
 }
 
 .pageContainer > * {
@@ -28,4 +27,16 @@
 
 .footer {
   grid-area: f;
+}
+
+@media (min-width: 1200px) {
+  .pageContainer {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 100px auto 200px;
+    grid-template-areas:
+      'h h h h h h h h h h h h'
+      'm m m m m m m m m m m m'
+      'f f f f f f f f f f f f';
+    gap: 2rem;
+  }
 }
