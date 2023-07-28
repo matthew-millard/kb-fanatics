@@ -2,15 +2,15 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 5% 1fr 5%;
-  grid-template-rows: 100px auto 100px;
+  grid-template-rows: 100px 1fr 1fr;
   grid-template-areas:
     '. h .'
     '. m .'
-    '. f .';
+    'f f f';
 }
 
 .pageContainer > * {
-  border: 2px solid black;
+  /* border: 1px solid white; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,12 +27,13 @@
 
 .footer {
   grid-area: f;
+  /* background-color: var(--navy); */
 }
 
 @media (min-width: 1200px) {
   .pageContainer {
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 100px auto 200px;
+    grid-template-rows: 100px auto 300px;
     grid-template-areas:
       'h h h h h h h h h h h h'
       'm m m m m m m m m m m m'
