@@ -113,7 +113,7 @@ footer {
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
     grid-template-areas:
       'newsletter links about contact'
       'social . . .'

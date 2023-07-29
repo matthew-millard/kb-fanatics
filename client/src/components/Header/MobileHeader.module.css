@@ -29,6 +29,7 @@
 }
 
 .sidebar {
+  z-index: 998;
   display: grid;
   grid-template-columns: 40px auto 40px;
   grid-template-rows: 100px 100px auto 100px 100px 1fr;
