@@ -18,7 +18,7 @@ export function Footer() {
   return (
     <footer>
       <div className={styles.newsletter}>
-        <h2 className={styles.logo}>KYBDS</h2>
+        <h3 className={styles.logo}>KB FANATICS</h3>
         <h4>Sign up for news stories and personal offers</h4>
         <form onSubmit={handleNewsletterSignUp} className={styles.newsletterForm}>
           <input
@@ -58,7 +58,7 @@ export function Footer() {
         <h4>Contact Us</h4>
         <p>
           Visit our <a href={links.find(link => link.title === 'Contact Us').url}>Contact Page</a> or email us directly
-          at <a href="mailto:support@kybds.com">support@kybds.com</a>
+          at <a href="mailto:support@kbfanatics.com">support@kbfanatics.com</a>
         </p>
       </div>
       <div className={styles.socialIcons}>
@@ -76,7 +76,7 @@ export function Footer() {
         ))}
       </div>
       <div className={styles.copyright}>
-        <p>© {currentYear} KYBDS. All Rights Reserved.</p>
+        <p>© {currentYear} KB FANATICS. All Rights Reserved.</p>
       </div>
     </footer>
   );
