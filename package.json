@@ -1,0 +1,26 @@
+{
+  "name": "kb-fanatics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthew-millard/kb-fanatics.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matthew-millard/kb-fanatics/issues"
+  },
+  "homepage": "https://github.com/matthew-millard/kb-fanatics#readme"
+}
