@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { links } from './footerLinks';
-import socialIcons from '../Header/SocialIcons/socialIcons';
-import styles from './Footer.module.css';
-import payments from './paymentOptions';
-import { faGreaterThan } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import { faGreaterThan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import links from "./footerLinks";
+import socialIcons from "../Header/SocialIcons/socialIcons";
+import styles from "./Footer.module.css";
+import payments from "./paymentOptions";
 
-export function Footer() {
-  const [email, setEmail] = useState('');
+export default function Footer() {
+  const [email, setEmail] = useState("");
   const currentYear = new Date().getFullYear(); // Get current year for copyright
 
-  const handleNewsletterSignUp = e => {
+  const handleNewsletterSignUp = (e) => {
     e.preventDefault();
-    console.log(email);
+    // console.log(email);
   };
 
   return (
@@ -27,7 +27,7 @@ export function Footer() {
             id="newsletter"
             placeholder="Email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className={styles.newsletterInput}
           />
           <button type="submit" className={styles.newsletterButton}>
@@ -38,10 +38,10 @@ export function Footer() {
       <nav className={styles.links}>
         <h4>Useful Pages</h4>
         <ul>
-          {links.map((link, index) => (
-            <li key={index}>
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
-                {link.title}
+          {links.map((linkObj) => (
+            <li key={linkObj.id}>
+              <a href={linkObj.url} target="_blank" rel="noopener noreferrer">
+                {linkObj.title}
               </a>
             </li>
           ))}
@@ -50,29 +50,32 @@ export function Footer() {
       <div className={styles.about}>
         <h4>About</h4>
         <p>
-          We are an online store dedicated to mechanical keyboard enthusiasts. We stock components at reasonable prices
-          and ensure they're always in stock.
+          We are an online store dedicated to mechanical keyboard enthusiasts. We stock components
+          at reasonable prices and ensure they&apos;re always in stock.
         </p>
       </div>
       <div className={styles.contact}>
         <h4>Contact Us</h4>
         <p>
-          Visit our <a href={links.find(link => link.title === 'Contact Us').url}>Contact Page</a> or email us directly
-          at <a href="mailto:support@kbfanatics.com">support@kbfanatics.com</a>
+          Visit our <a href={links.find((link) => link.title === "Contact Us").url}>Contact Page</a>{" "}
+          or email us directly at <a href="mailto:support@kbfanatics.com">support@kbfanatics.com</a>
         </p>
       </div>
       <div className={styles.socialIcons}>
-        {socialIcons.map((iconObj, index) => {
-          return (
-            <a key={iconObj.id} href={iconObj.url} className={iconObj.className}>
-              <FontAwesomeIcon icon={iconObj.icon} />
-            </a>
-          );
-        })}
+        {socialIcons.map((iconObj) => (
+          <a key={iconObj.id} href={iconObj.url} className={iconObj.className}>
+            <FontAwesomeIcon icon={iconObj.icon} />
+          </a>
+        ))}
       </div>
       <div className={styles.payments}>
-        {payments.map(paymentObj => (
-          <paymentObj.brand key={paymentObj.id} aria-label={paymentObj.label} icon={paymentObj.brand} size={30} />
+        {payments.map((paymentObj) => (
+          <paymentObj.brand
+            key={paymentObj.id}
+            aria-label={paymentObj.label}
+            icon={paymentObj.brand}
+            size={30}
+          />
         ))}
       </div>
       <div className={styles.copyright}>

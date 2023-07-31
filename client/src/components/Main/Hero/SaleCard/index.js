@@ -1,2 +1,3 @@
-import SaleCard from './SaleCard';
+import SaleCard from "./SaleCard";
+
 export default SaleCard;

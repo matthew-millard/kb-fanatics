@@ -1,3 +1,5 @@
-export function Sidebar({ className }) {
-  return <aside className={className}>Sidebar</aside>;
+import React from "react";
+
+export default function Sidebar() {
+  return <aside>Sidebar</aside>;
 }

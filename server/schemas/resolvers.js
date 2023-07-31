@@ -1,10 +1,8 @@
-import { Switch } from '../models/index.js';
+import Switch from "../models/index.js";
 
 const resolvers = {
   Query: {
-    switches: async () => {
-      return await Switch.find({});
-    },
+    switches: async () => Switch.find({}),
   },
 };
 

@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 const switchSchema = new Schema({
   brand: {
@@ -28,6 +28,6 @@ const switchSchema = new Schema({
   },
 });
 
-const Switch = model('Switch', switchSchema);
+const Switch = model("Switch", switchSchema);
 
 export default Switch;

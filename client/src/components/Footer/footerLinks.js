@@ -1,22 +1,29 @@
-export const links = [
+const links = [
   {
-    title: 'About Us',
-    url: '/about-us',
+    title: "About Us",
+    url: "/about-us",
+    id: "aboutUs",
   },
   {
-    title: 'Contact Us',
-    url: '/contact-us',
+    title: "Contact Us",
+    url: "/contact-us",
+    id: "contactUs",
   },
   {
-    title: 'FAQ',
-    url: '/faq',
+    title: "FAQ",
+    url: "/faq",
+    id: "faq",
   },
   {
-    title: 'Refund Policy',
-    url: '/refund-policy',
+    title: "Refund Policy",
+    url: "/refund-policy",
+    id: "refundPolicy",
   },
   {
-    title: 'Terms of Service',
-    url: '/terms',
+    title: "Terms of Service",
+    url: "/terms",
+    id: "terms",
   },
 ];
+
+export default links;

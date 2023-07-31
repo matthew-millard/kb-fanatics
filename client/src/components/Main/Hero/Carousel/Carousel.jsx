@@ -1,9 +1,8 @@
-import styles from './Carousel.module.css';
-import img1 from '../images/keyboard_01.jpg';
-import img2 from '../images/keyboard_02.jpg';
-import img3 from '../images/keyboard_03.jpg';
-
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import styles from "./Carousel.module.css";
+import img1 from "../images/keyboard_01.jpg";
+import img2 from "../images/keyboard_02.jpg";
+import img3 from "../images/keyboard_03.jpg";
 
 const images = [img1, img2, img3];
 
@@ -23,7 +22,7 @@ function Carousel() {
   return (
     <div className={styles.carousel}>
       {images.map((img, index) => (
-        <img key={img} src={img} alt="" className={current === index ? styles.visible : ''} />
+        <img key={img} src={img} alt="" className={current === index ? styles.visible : ""} />
       ))}
     </div>
   );

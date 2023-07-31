@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { NavLinks, Account, Cart, SocialIcons, Logo } from './Header';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/pro-light-svg-icons';
-import styles from './MobileHeader.module.css';
-import SearchBar from './SearchBar';
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/pro-light-svg-icons";
+import { NavLinks, Account, Cart, SocialIcons, Logo } from "./Header";
+import styles from "./MobileHeader.module.css";
+import SearchBar from "./SearchBar";
 
 function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,10 +20,10 @@ function MobileHeader() {
         <FontAwesomeIcon
           icon={isOpen ? faXmark : faBars}
           onClick={handleClick}
-          className={`${styles.menuIcon}  ${isOpen ? styles.rotateIcon : ''}`}
+          className={`${styles.menuIcon}  ${isOpen ? styles.rotateIcon : ""}`}
         />
       </div>
-      <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+      <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
         <div className={styles.userControls}>
           <Account />
           <Cart />

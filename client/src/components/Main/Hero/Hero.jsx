@@ -1,6 +1,7 @@
-import Carousel from './Carousel';
-import SaleCard from './SaleCard';
-import styles from './Hero.module.css';
+import React from "react";
+import Carousel from "./Carousel";
+import SaleCard from "./SaleCard";
+import styles from "./Hero.module.css";
 
 function Hero() {
   return (

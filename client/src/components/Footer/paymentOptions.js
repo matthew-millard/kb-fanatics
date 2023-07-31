@@ -1,25 +1,25 @@
-import { FaCcVisa, FaCcMastercard, FaCcPaypal, FaCcAmazonPay } from 'react-icons/fa';
+import { FaCcVisa, FaCcMastercard, FaCcPaypal, FaCcAmazonPay } from "react-icons/fa";
 
 const payments = [
   {
     brand: FaCcVisa,
-    label: 'Visa',
-    id: 'visa',
+    label: "Visa",
+    id: "visa",
   },
   {
     brand: FaCcMastercard,
-    label: 'Mastercard',
-    id: 'mastercard',
+    label: "Mastercard",
+    id: "mastercard",
   },
   {
     brand: FaCcPaypal,
-    label: 'Paypal',
-    id: 'paypal',
+    label: "Paypal",
+    id: "paypal",
   },
   {
     brand: FaCcAmazonPay,
-    label: 'Amazon Pay',
-    id: 'amazon',
+    label: "Amazon Pay",
+    id: "amazon",
   },
 ];
 
