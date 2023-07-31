@@ -1,2 +1,3 @@
-import Switch from './Switches.js';
-export { Switch };
+import Switch from "./Switches.js";
+
+export default Switch;

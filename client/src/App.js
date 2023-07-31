@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import styles from './App.module.css';
-import { Footer, Header, Main, MobileHeader } from './components';
+import React, { useState, useEffect } from "react";
+import styles from "./App.module.css";
+import { Footer, Header, Main, MobileHeader } from "./components";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
@@ -10,9 +10,9 @@ function App() {
       setIsMobile(window.innerWidth <= 1200);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

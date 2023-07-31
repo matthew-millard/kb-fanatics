@@ -1,4 +1,5 @@
-import styles from './SaleCard.module.css';
+import React from "react";
+import styles from "./SaleCard.module.css";
 
 function SaleCard() {
   return (
@@ -7,7 +8,9 @@ function SaleCard() {
         <h3>Summer Sale!</h3>
         <p>Up to 50% off on select items.</p>
       </div>
-      <button className={styles.button}>Shop Now</button>
+      <button type="button" className={styles.button}>
+        Shop Now
+      </button>
     </div>
   );
 }

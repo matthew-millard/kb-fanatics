@@ -1,2 +1,3 @@
-import SocialIcons from './SocialIcons.jsx';
+import SocialIcons from "./SocialIcons.jsx";
+
 export default SocialIcons;

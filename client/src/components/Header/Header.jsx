@@ -1,10 +1,11 @@
-import styles from './Header.module.css';
-import Logo from './Logo';
-import NavLinks from './NavLinks';
-import SearchBar from './SearchBar';
-import Account from './Account';
-import Cart from './Cart';
-import SocialIcons from './SocialIcons';
+import React from "react";
+import styles from "./Header.module.css";
+import Logo from "./Logo";
+import NavLinks from "./NavLinks";
+import SearchBar from "./SearchBar";
+import Account from "./Account";
+import Cart from "./Cart";
+import SocialIcons from "./SocialIcons";
 
 export default function Header() {
   return (
