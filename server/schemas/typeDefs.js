@@ -3,10 +3,10 @@ import { gql } from "apollo-server-express";
 const typeDefs = gql`
   type Switch {
     _id: ID
-    name: String
+    brand: String
     product: String
-    quantity: Int
     switchType: String
+    quantity: Int
     price: Int
   }
 
