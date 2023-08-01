@@ -4,13 +4,12 @@ const switchSchema = new Schema({
   brand: {
     type: String,
     required: true,
-    unique: true,
+    unique: true, //would the brand be unique?
     trim: true,
   },
   product: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   switchType: {
@@ -26,8 +25,12 @@ const switchSchema = new Schema({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    trim: true,
+  }
 });
 
-const Switch = model("Switch", switchSchema);
+const SwitchModel = model("SwitchModel", switchSchema);
 
-export default Switch;
+export default SwitchModel;
