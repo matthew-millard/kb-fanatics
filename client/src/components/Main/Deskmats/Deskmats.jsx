@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./Deskmats.module.css"
+import styles from "./Deskmats.module.css";
+
 function Deskmats() {
   return <h1 className={styles.h1}>Deskmats</h1>;
 }
