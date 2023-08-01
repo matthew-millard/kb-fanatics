@@ -1,35 +1,35 @@
 import { Schema, model } from "mongoose";
 
-const switchSchema = new Schema({
-  brand: {
+const orderSchema = new Schema({
+  userID: {
+    type: Schema.Types.ObjectId,
+    ref: "User", 
+    required: true,
+  },
+  cartID: {
     type: String,
     required: true,
     trim: true,
   },
-  product: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  switchType: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  quantity: {
+  subTotal: {
     type: Number,
     required: true,
   },
-  price: {
+  taxes: {
     type: Number,
     required: true,
   },
-  image: {
+  total: {
+    type: Number,
+    required: true,
+  },
+  status: {
     type: String,
+    required: true,
     trim: true,
-  }
+  },
 });
 
-const SwitchModel = model("SwitchModel", switchSchema);
+const Order = model("Order", orderSchema);
 
-export default SwitchModel;
+export default Order;

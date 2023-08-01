@@ -1,0 +1,48 @@
+[
+    {
+        "prodName": "TOFU60 2.0",
+        "brand": "kbdfans.com",
+        "price": 69.00,
+        "quantity": 5,
+        "features": "Tofu60 2.0 is a new beginning, the new changes will bring a new typing experience, and the new surface coating process can also bring more color possibilities.Case material: Aluminum (anodized and electrostatically coated process) Plate: PC/ Aluminum/ FR4/ Carbon fiber plate PCB: 1.2 mm Flex cut Hot-swap PCB/1.2 mm Non-Flex cut Solder PCB, QMK firmware, VIA support, without per-key RGB, USB-C port, with daughterboard+JST cable Weight bar: Brass material (transparent E-coating after sandblasting process)tructure: Top mount, silicone socks, silicone bowl (3 types of structural support)Weight: ≈1.4 kg before assemblyDimesion: 294.7 mm (length) x 115.7 mm (width) x 18.5 mm (front) x 32.5 mm (back)Feature: Screwless exterior design, the dachable silicon feet hiding all the screws at the bottomTyping angle: 7°Design by KBDfansMade in China",
+        "image": "../client/src/images/TOFU60_2.0.webp"
+      },
+      {
+        "prodName": "TOFU65 2.0",
+        "brand": "kbdfans.com",
+        "price": 55.00,
+        "quantity": 5,
+        "features": "Case material: Aluminum (anodized and electrostatically coated process)Plate: PC/ Aluminum/ FR4/ Carbon fiber platePCB: 1.2 mm Flex cut Hot-swap PCB/1.2 mm Non-Flex cut Solder PCB, supports per-key RGB, QMK firmware, VIA support, USB-C port, with daughterboard+JST cableWeight bar: Brass material (transparent E-coating after sandblasting process)Structure: Top mount, silicone socks, silicone bowl, 3 types of structural supportWeight: ≈1.7 kg after assemblyDimension: 313.7 mm (length) x 115.7 mm (width) x 18.5 mm (front) x 32.5 mm (back)Feature: Screwless exterior design, the detachable silicon feet hiding all the screws at the bottomTyping angle: 7°Design by KBDfansMade in China",
+        "image": "../client/src/images/READY_TO_USE_TOFU65_2.0_KEYBOARD_WITH_EPBT_DREAMSCAPE.webp"
+     
+      },
+      {
+        "prodName": "Black widow v4",
+        "brand": "Razer",
+        "price": 319.00,
+        "quantity": 5,
+        "features": "Empower your play with a centerpiece that elevates your entire setup. Enter the next phase of battlestation evolution with the ultimate mechanical gaming keyboard. Take full command with a set of features designed for advanced control, and enhance your immersion with full-blown Razer Chroma™ RGB. Assume greater control over your battlestation by assigning a custom function to the keyboard’s programmable dial. Game with greater command using a set of macro keys for essential keybinds. Razer™ Synapse enabled 5052 Aluminum Alloy Top Case Razer™ Command Dial 5 dedicated macros keys 3 dedicated macro side buttons Case foam & PCB foam included Lubricated stabilizers 2-side underglow on main chassis with 3-side underglow on wrist-rest Up to 8,000 Hz polling rate",
+        "image": "../client/src/images/blackwidow_v4.jpg"
+     
+      },
+      {
+        "prodName": "Deathstalker v2 White",
+        "brand": "Razer",
+        "price": 289.99,
+        "quantity": 5,
+        "features": "Armed with the same lightning-fast response that’s a hallmark of all our optical keyboards, perform quicker keystrokes with all-new switches that have a shorter actuation height for reduced key travel, backed by a 70-million keystroke lifespan for long-lasting performance. 70 million keystroke lifespan Razer™ HyperSpeed Wireless Technology Razer™ HyperSpeed Multi-device Support Razer Synapse enabled Fully programmable keys with on-the-fly macro recording N-key roll over Gaming mode option Detachable braided fiber Type-C cable 5052 Aluminium Alloy Top Case",
+        "image": "../client/src/images/deathstalker_v2_pro_tkl_white.jpg"
+     
+      },
+      {
+        "prodName": "Razer Pro Ultra",
+        "brand": "Razer",
+        "price": 199.99,
+        "quantity": 5,
+        "features": "Full-sized keyboard with soft-touch coating Multi-host connection for up to 4 devices Fully programmable keys with macro recording Razer™ Productivity Dongle – connect this keyboard and compatible mice to the same wireless dongle 10-key rollover Battery Life: Up to ~214 hours without back-lighting on Bluetooth® and ~207 hours on 2.4GHz wireless, or up to ~13 hours on Bluetooth® and 2.4GHz with back-lighting on full brightness Metal top cover Razer Synapse 3 enabled Approximate size: 439 mm x 131 mm x 40 mm Approximate weight: 1038 g (including cable) ",
+        "image": "../client/src/images/razer_pro_type_ultra_3.jpg"
+     
+      }
+
+    
+]

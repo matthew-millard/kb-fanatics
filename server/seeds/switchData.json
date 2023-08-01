@@ -14,31 +14,27 @@
     "price": 15
   },
   {
-    "brand": "Drop",
-    "product": "Holy Panda",
-    "switchType": "Tactile",
-    "quantity": 3000,
-    "price": 35
-  },
-  {
-    "brand": "Kailh",
-    "product": "Pro Mx",
+    "brand": "NAJAKeys",
+    "product": "JERRZI TU LINEAR SWITCHES",
     "switchType": "Linear",
-    "quantity": 2000,
-    "price": 15
+    "quantity": 17,
+    "price": 11,
+    "image": "JERRZI_TU_LINEAR_SWITCHES.webp"
   },
   {
-    "brand": "Drop",
-    "product": "Holy Panda",
-    "switchType": "Tactile",
-    "quantity": 3000,
-    "price": 35
-  },
-  {
-    "brand": "Kailh",
-    "product": "Pro Mx",
+    "brand": "Haimu",
+    "product": "HAIMU MIDDLE NIGHT LINEAR SWITCHES 10pcs price should be float 4.30",
     "switchType": "Linear",
-    "quantity": 2000,
-    "price": 15
+    "quantity": 100, 
+    "price": 4,
+    "image": "HAIMU_MIDDLE_NIGHT_LINEAR_SWITCHES.webp"
+  },
+  {
+    "brand": "Cherry",
+    "product": "CHERRY MX HYPERGLIDE GREEN TACTILE SWITCHES 10pcs price should be float 3.50",
+    "switchType": "Linear",
+    "quantity": 29, 
+    "price": 4,
+    "image": "CHERRY_MX_HYPERGLIDE_GREEN_TACTILE_SWITCHES.webp"
   }
 ]

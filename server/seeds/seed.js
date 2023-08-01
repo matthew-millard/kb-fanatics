@@ -1,19 +1,26 @@
 import db from "../config/connection.js";
-import Switch from "../models/index.js";
+import { SwitchModel } from "../models/index.js";
 import switchData from "./switchData.json" assert { type: "json" };
+import { Keyboard } from "../models/index.js";
+import keyboardData from "./keyboardData.json" assert { type: "json" };
+import { Keycap } from  "../models/index.js";
+import keycapsData from "./keycapsData.json" assert { type: "json" };
+import { User } from "../models/index.js";
+import userData from "./userData.json" assert { type: "json" };
+
 
 db.once("open", async () => {
-  try {
-    // drop all databases
-    await Switch.deleteMany({});
+  // drop all databases
+  await SwitchModel.deleteMany({});
+  await Keyboard.deleteMany({});
+  await Keycap.deleteMany({});
+  await User.deleteMany({});
+  //   bulk create each model
+  await SwitchModel.insertMany(switchData);
+  await Keyboard.insertMany(keyboardData);
+  await Keycap.insertMany(keycapsData);
+  await User.insertMany(userData);
 
-    // bulk create each model
-    await Switch.insertMany(switchData);
-
-    console.log("Database seeded 🌱");
-    process.exit(0);
-  } catch (error) {
-    console.error("Error seeding database: ", error);
-    process.exit(1);
-  }
+  console.log("Database seeded 🌱");
+  process.exit(0);
 });
