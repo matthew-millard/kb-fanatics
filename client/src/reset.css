@@ -51,3 +51,8 @@ textarea,
 select {
   font: inherit;
 }
+
+button {
+  position: static;
+  transform: none;
+}

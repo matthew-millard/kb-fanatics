@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import cartReducer from "./utils/cartSlice";
 import { Footer, Header, MobileHeader } from "./components";
 import styles from "./App.module.css";
+
+const store = configureStore({
+  reducer: {
+    cart: cartReducer,
+  },
+});
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
@@ -18,15 +27,17 @@ function App() {
   }, []);
 
   return (
-    <div className={styles.pageContainer}>
-      <div className={styles.header}>{isMobile ? <MobileHeader /> : <Header />}</div>
-      <div className={styles.main}>
-        <Outlet />
+    <Provider store={store}>
+      <div className={styles.pageContainer}>
+        <div className={styles.header}>{isMobile ? <MobileHeader /> : <Header />}</div>
+        <div className={styles.main}>
+          <Outlet />
+        </div>
+        <div className={styles.footer}>
+          <Footer />
+        </div>
       </div>
-      <div className={styles.footer}>
-        <Footer />
-      </div>
-    </div>
+    </Provider>
   );
 }
 
