@@ -16,7 +16,7 @@ input::placeholder {
   font-size: 1.2rem;
 }
 
-button {
+.button {
   padding: 0;
   position: absolute;
   right: 10px; /* Adjust this value to move the button horizontally */
@@ -29,6 +29,6 @@ button {
   font-size: 1.4rem;
 }
 
-button:hover {
+.button:hover {
   color: lightgray; /* Change icon color on hover */
 }

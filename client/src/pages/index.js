@@ -4,5 +4,6 @@ import Switches from "./Switches";
 import Keycaps from "./Keycaps";
 import Deskmats from "./Deskmats";
 import Accessories from "./Accessories";
+import Cart from "./Cart";
 
-export { Home, Keyboards, Switches, Keycaps, Deskmats, Accessories };
+export { Home, Keyboards, Switches, Keycaps, Deskmats, Accessories, Cart };
