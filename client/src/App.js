@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { Footer, Header, MobileHeader } from "./components";
 import styles from "./App.module.css";
-import { Footer, Header, Main, MobileHeader } from "./components";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
@@ -20,7 +21,7 @@ function App() {
     <div className={styles.pageContainer}>
       <div className={styles.header}>{isMobile ? <MobileHeader /> : <Header />}</div>
       <div className={styles.main}>
-        <Main />
+        <Outlet />
       </div>
       <div className={styles.footer}>
         <Footer />

@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Logo.module.css";
 
 function Logo() {
   return (
-    <a href="/" className={styles.container}>
+    <Link to="/" className={styles.container}>
       <span className={styles.logo}>KB FANATICS</span>
-    </a>
+    </Link>
   );
 }
 
