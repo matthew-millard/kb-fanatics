@@ -23,31 +23,29 @@ const typeDefs = gql`
     phoneNum: String
     creditCard: String
     expiration: String
-
   }
   type Order {
     order_ID: ID
     userID: String
     cartID: String
-    subTotal: Float
+    subTotal: Int
     taxes: Int
-    total: Float
+    total: Int
     status: String
   }
-  type Cart{
+  type Cart {
     cart_ID: ID
     itemID: String
     quantitiy: Int
     prodName: String
-    price: Float
-    subTotal: Float
-
+    price: Int
+    subTotal: Int
   }
   type Keyboard {
     product_ID: ID
     prodName: String
     brand: String
-    price: Float
+    price: Int
     quantity: Int
     features: String
     image: String
@@ -56,15 +54,14 @@ const typeDefs = gql`
     product_ID: ID
     prodName: String
     brand: String
-    price: Float
+    price: Int
     quantity: Int
     features: String
     image: String
   }
 
-
   type Query {
-    switches: [Switch]
+    switches: [SwitchModel]
     users: [User]
     orders: [Order]
     cart: [Cart]

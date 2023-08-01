@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const orderSchema = new Schema({
   userID: {
     type: Schema.Types.ObjectId,
-    ref: "User", 
+    ref: "User",
     required: true,
   },
   cartID: {

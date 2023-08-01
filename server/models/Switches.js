@@ -27,9 +27,9 @@ const switchSchema = new Schema({
   image: {
     type: String,
     trim: true,
-  }
+  },
 });
 
-const SwitchModel = model("SwitchModel", switchSchema);
+const SwitchModel = model("Switches", switchSchema);
 
 export default SwitchModel;

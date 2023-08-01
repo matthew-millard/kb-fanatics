@@ -1,15 +1,16 @@
+/* eslint-disable no-undef */
 import { Schema, model } from "mongoose";
 
 const cartSchema = new Schema({
   itemID: {
-    type: Schema.Types.ObjectId, 
+    type: Schema.Types.ObjectId,
     required: true,
-    refPath: "itemModel", 
+    refPath: "itemModel",
   },
   itemModel: {
     type: String,
     required: true,
-    enum: ["Keyboard", "Keycap", "Switch"], 
+    enum: ["Keyboard", "Keycap", "Switch"],
   },
   quantity: {
     type: Number,
@@ -21,11 +22,12 @@ const cartSchema = new Schema({
     trim: true,
   },
   price: {
-    type: Float,
+    type: Number,
     required: true,
   },
   subTotal: {
-    type: Float,
+    // eslint-disable-next-line no-undef
+    type: Number,
     required: true,
   },
 });
