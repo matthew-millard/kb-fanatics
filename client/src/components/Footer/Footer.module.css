@@ -8,13 +8,13 @@ footer {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(7, auto);
   grid-template-areas:
-    'newsletter'
-    'links'
-    'about'
-    'contact'
-    'social'
-    'payments'
-    'copyright';
+    "newsletter"
+    "links"
+    "about"
+    "contact"
+    "social"
+    "payments"
+    "copyright";
   margin-inline: 5%;
   margin-bottom: 2rem;
   gap: 2rem;
@@ -116,9 +116,9 @@ footer {
     grid-template-columns: 2fr 1fr 1fr 1fr;
     grid-template-rows: repeat(3, auto);
     grid-template-areas:
-      'newsletter links about contact'
-      'social . . .'
-      'copyright . . payments';
+      "newsletter links about contact"
+      "social . . ."
+      "copyright . . payments";
     margin-inline: 5%;
     margin-bottom: 2rem;
     gap: 2rem;
