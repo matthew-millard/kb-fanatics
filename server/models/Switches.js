@@ -4,7 +4,6 @@ const switchSchema = new Schema({
   brand: {
     type: String,
     required: true,
-    unique: true, //would the brand be unique?
     trim: true,
   },
   product: {

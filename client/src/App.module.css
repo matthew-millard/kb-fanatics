@@ -2,11 +2,11 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 5% 1fr 5%;
-  grid-template-rows: 100px 1fr 1fr;
+  grid-template-rows: 100px 1fr auto;
   grid-template-areas:
-    '. h .'
-    '. m .'
-    'f f f';
+    ". h ."
+    ". m ."
+    "f f f";
 }
 
 .pageContainer > * {
@@ -32,8 +32,8 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 100px auto auto;
     grid-template-areas:
-      'h h h h h h h h h h h h'
-      'm m m m m m m m m m m m'
-      'f f f f f f f f f f f f';
+      "h h h h h h h h h h h h"
+      ". m m m m m m m m m m ."
+      "f f f f f f f f f f f f";
   }
 }
