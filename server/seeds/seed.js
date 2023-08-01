@@ -3,12 +3,17 @@ import Switch from "../models/index.js";
 import switchData from "./switchData.json" assert { type: "json" };
 
 db.once("open", async () => {
-  // drop all databases
-  await Switch.deleteMany({});
+  try {
+    // drop all databases
+    await Switch.deleteMany({});
 
-  //   bulk create each model
-  await Switch.insertMany(switchData);
+    // bulk create each model
+    await Switch.insertMany(switchData);
 
-  console.log("Database seeded 🌱");
-  process.exit(0);
+    console.log("Database seeded 🌱");
+    process.exit(0);
+  } catch (error) {
+    console.error("Error seeding database: ", error);
+    process.exit(1);
+  }
 });

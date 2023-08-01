@@ -12,5 +12,33 @@
     "switchType": "Linear",
     "quantity": 2000,
     "price": 15
+  },
+  {
+    "brand": "Drop",
+    "product": "Holy Panda",
+    "switchType": "Tactile",
+    "quantity": 3000,
+    "price": 35
+  },
+  {
+    "brand": "Kailh",
+    "product": "Pro Mx",
+    "switchType": "Linear",
+    "quantity": 2000,
+    "price": 15
+  },
+  {
+    "brand": "Drop",
+    "product": "Holy Panda",
+    "switchType": "Tactile",
+    "quantity": 3000,
+    "price": 35
+  },
+  {
+    "brand": "Kailh",
+    "product": "Pro Mx",
+    "switchType": "Linear",
+    "quantity": 2000,
+    "price": 15
   }
 ]

@@ -4,13 +4,11 @@ const switchSchema = new Schema({
   brand: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   product: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   switchType: {
