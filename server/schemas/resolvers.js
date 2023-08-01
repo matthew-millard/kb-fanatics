@@ -1,10 +1,15 @@
-import Switch from "../models/index.js";
+import SwitchModels from "../models/Switches.js";
+import User from "../models/Users.js";
+import Keycap from "../models/Keycaps.js";
+import Keyboard from "../models/Keyboards.js";
+import Order from "../models/Order.js";
+import Cart from "../models/Cart.js";
 
 const resolvers = {
   Query: {
     switches: async () => {
       try {
-        return await Switch.find({});
+        return await SwitchModels.find({});
       } catch (error) {
         throw new Error("Error fetching switches");
       }
@@ -45,7 +50,6 @@ const resolvers = {
       }
     },
   },
-  
 };
 
 export default resolvers;

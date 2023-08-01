@@ -3,11 +3,10 @@ import { SwitchModel } from "../models/index.js";
 import switchData from "./switchData.json" assert { type: "json" };
 import { Keyboard } from "../models/index.js";
 import keyboardData from "./keyboardData.json" assert { type: "json" };
-import { Keycap } from  "../models/index.js";
+import { Keycap } from "../models/index.js";
 import keycapsData from "./keycapsData.json" assert { type: "json" };
 import { User } from "../models/index.js";
 import userData from "./userData.json" assert { type: "json" };
-
 
 db.once("open", async () => {
   // drop all databases
