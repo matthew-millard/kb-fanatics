@@ -14,7 +14,7 @@
       "jsx": true // Enable JSX since we're using React
     }
   },
-  "extends": ["airbnb", "prettier"],
+  "extends": ["react-app", "airbnb", "prettier"],
   "plugins": ["prettier", "react", "react-hooks"],
   "rules": {
     "prettier/prettier": ["warn", {}, { "usePrettierrc": true }], // Use .prettierrc file as source

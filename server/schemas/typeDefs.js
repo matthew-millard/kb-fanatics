@@ -68,6 +68,24 @@ const typeDefs = gql`
     keyboards: [Keyboard]
     keycaps: [Keycap]
   }
+
+  type AuthPayload {
+    token: String!
+    user: User
+  }
+
+  type Mutation {
+    signup(
+    fName: String!
+    LName: String!
+    eMail: String!
+    password: String!
+    address1: String!
+    city: String!
+    stateProvince: String!
+    country: String!
+    ): AuthPayload
+  }
 `;
 
 export default typeDefs;
