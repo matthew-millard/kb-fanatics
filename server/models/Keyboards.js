@@ -26,6 +26,10 @@ const keyboardSchema = new Schema({
   image: {
     type: String,
     trim: true,
+  },
+  type: {
+    type: String,
+    trim: true,
   }
 });
 

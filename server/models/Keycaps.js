@@ -28,6 +28,10 @@ const keycapSchema = new Schema({
     type: String,
     trim: true,
   },
+  type: {
+    type: String,
+    trim: true,
+  }
 });
 
 const Keycap = model("Keycap", keycapSchema);

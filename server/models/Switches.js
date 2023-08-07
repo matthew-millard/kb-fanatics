@@ -28,6 +28,10 @@ const switchSchema = new Schema({
     type: String,
     trim: true,
   },
+  type: {
+    type: String,
+    trim: true,
+  }
 });
 
 const SwitchModel = model("Switches", switchSchema);
