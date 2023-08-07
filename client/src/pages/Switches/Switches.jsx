@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../utils/cartSlice";
 import { GET_SWITCHES } from "../../utils/queries";
 import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
@@ -9,7 +9,7 @@ import img from "./images/gateron_g_pro_3.0_silver_linear.webp";
 
 function Switches() {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart); // Access the cart array from the store
+  // const cart = useSelector((state) => state.cart); // Access the cart array from the store
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
@@ -29,7 +29,7 @@ function Switches() {
         and linear switches below.
       </p>
       <div className={styles.cards}>
-        {data.switches.map(({ _id, brand, product, switchType, price, quantity, imageUrl }) => (
+        {data.switches.map(({ _id, brand, product, switchType, price, quantity }) => (
           <div key={_id} className={styles.card}>
             <img src={img} alt={brand} className={styles.cardImage} />
             <div className={styles.cardCopy}>
@@ -41,7 +41,9 @@ function Switches() {
                 <p>In Stock: {quantity}</p>
                 <p>Price: ${price} / (Pack of 10)</p>
               </div>
-              <AddToCartButton onClick={() => handleAddToCart({ _id, brand, product, price })} />
+              <AddToCartButton
+                onClick={() => handleAddToCart({ _id, brand, product, price, img })}
+              />
             </div>
           </div>
         ))}

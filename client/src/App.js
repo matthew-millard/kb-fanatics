@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartReducer from "./utils/cartSlice";
+import cartSaver from "./utils/cartSaver";
 import { Footer, Header, MobileHeader } from "./components";
 import styles from "./App.module.css";
 
@@ -10,6 +11,7 @@ const store = configureStore({
   reducer: {
     cart: cartReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cartSaver),
 });
 
 function App() {

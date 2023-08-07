@@ -9,7 +9,7 @@ const keycapSchema = new Schema({
   brand: {
     type: String,
     required: true,
-    //unique?
+    // unique?
     trim: true,
   },
   price: {
@@ -27,7 +27,7 @@ const keycapSchema = new Schema({
   image: {
     type: String,
     trim: true,
-  }
+  },
 });
 
 const Keycap = model("Keycap", keycapSchema);
