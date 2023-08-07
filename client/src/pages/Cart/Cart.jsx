@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromCart, updateQuantity } from "../../utils/cartSlice"; // Import the actions
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashXmark, faPlus, faMinus } from "@fortawesome/pro-light-svg-icons";
+import { addToCart, removeFromCart, updateQuantity } from "../../utils/cartSlice";
 import styles from "./Cart.module.css";
 
 function Cart() {
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      return JSON.parse(savedCart);
+    }
+    return state.cart;
+  });
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const handleIncrease = (item) => {
     dispatch(addToCart(item));
@@ -23,34 +35,79 @@ function Cart() {
     dispatch(removeFromCart(itemId));
   };
 
+  const subTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  const tax = subTotal * 0.13; // 13% tax Ontario
+  const shipping = subTotal > 100 ? 0 : 10; // free shipping over $100 otherwise $10 flat rate
+  const total = subTotal + tax + shipping;
+
   return (
     <div className={styles.container}>
-      <h2>Your Cart</h2>
-      {cart.length === 0 && <p>Your cart is empty</p>}
-      <ul>
-        {cart.map((item) => (
-          <li key={item._id}>
-            <div>
-              <h3>
-                {item.brand} {item.product}
-              </h3>
-              <p>Price: ${item.price}</p>
-              <div>
-                <button type="button" onClick={() => handleDecrease(item)}>
-                  -
+      <h1 className={styles.header}>Your Cart</h1>
+      {cart.length === 0 && <p className={styles.emptyList}>Your cart is empty</p>}
+
+      {cart.length > 0 && (
+        <div className={styles.checkout}>
+          <div className={styles.cartHeadings}>
+            <b>Product</b>
+            <b>Price</b>
+            <b>Quantity</b>
+            <b>Remove</b>
+          </div>
+          <ul className={styles.cartList}>
+            {cart.map((item) => (
+              <li key={item._id} className={styles.cartItem}>
+                <div>
+                  <img src={item.img} alt={item.brand} className={styles.itemImage} />
+                </div>
+                <div className={styles.itemInfo}>
+                  <p>
+                    {item.brand} {item.product}
+                  </p>
+                </div>
+                <p className={styles.itemPrice}>${item.price}</p>
+                <div className={styles.quantityControl}>
+                  <button
+                    className={styles.controlButton}
+                    type="button"
+                    onClick={() => handleDecrease(item)}
+                  >
+                    <FontAwesomeIcon icon={faMinus} className={styles.icons} />
+                  </button>
+                  <span className={styles.itemQuantity}>{item.quantity}</span>
+                  <button
+                    className={styles.controlButton}
+                    type="button"
+                    onClick={() => handleIncrease(item)}
+                  >
+                    <FontAwesomeIcon icon={faPlus} className={styles.icons} />
+                  </button>
+                </div>
+                <button
+                  className={styles.removeButton}
+                  type="button"
+                  onClick={() => handleRemove(item._id)}
+                >
+                  <FontAwesomeIcon icon={faTrashXmark} />
                 </button>
-                <span>{item.quantity}</span>
-                <button type="button" onClick={() => handleIncrease(item)}>
-                  +
-                </button>
-              </div>
-              <button type="button" onClick={() => handleRemove(item._id)}>
-                Remove from cart
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+              </li>
+            ))}
+          </ul>
+          <div className={styles.totals}>
+            <p className={styles.subTotal}>
+              Sub-Total: <span>${subTotal.toFixed(2)}</span>
+            </p>
+            <p className={styles.tax}>
+              Tax: <span>${tax.toFixed(2)}</span>
+            </p>
+            <p className={styles.shipping}>
+              Shipping: <span>${shipping.toFixed(2)}</span>
+            </p>
+            <p className={styles.total}>
+              Total: <span>${total.toFixed(2)}</span>
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
