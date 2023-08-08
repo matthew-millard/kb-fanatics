@@ -5,7 +5,8 @@
         "price": 21.00,
         "quantity": 17,
         "features": "PBT material Profile: Cherry profile Production Method: Dye-sub Friendly Reminds: Only keycaps included, no keyboard Compatibility: Cherry MX switches and MX-style clones EPBT Keycap QC Standard: Link",
-        "image":"../client/src/images/EBTalphas.webp"
+        "image":"../client/src/images/EBTalphas.webp",
+        "type":"Keycaps"
     },
     {
         "prodName": "EPBT International",
@@ -13,7 +14,8 @@
         "price": 10.00,
         "quantity": 1,
         "features": "PBT material Profile: Cherry profile Production Method: Dye-sub Friendly Reminds: Only keycaps included, no keyboard Compatibility: Cherry MX switches and MX-style clones EPBT Keycap QC Standard: Link",
-        "image": "../client/src/images/EBTinternational.webp"
+        "image": "../client/src/images/EBTinternational.webp",
+        "type":"Keycaps"
     
     
     },
@@ -23,7 +25,8 @@
         "price": 78.00,
         "quantity": 32,
         "features": "Material: ABS material Profile: Cherry profile Production Method: Doubleshot Manufacturer: PBTfans Packaging: ABS keycaps tray with designed tray cover Friendly Reminds: Only keycaps included, no keyboard Compatibility: Cherry MX switches and MX-style clones Designer: keebibi (in collaboration with Geonworks)",
-        "image": "../client/src/images/PBTfansCookiesnCreme.webp"
+        "image": "../client/src/images/PBTfansCookiesnCreme.webp",
+        "type":"Keycaps"
     
     },
     {
@@ -32,7 +35,8 @@
         "price": 19.00,
         "quantity": 11,
         "features": "PBT material Profile: Cherry profile Production Method: Doubleshot Manufacturer: PBTfans Friendly Reminds: Only keycaps included, no keyboard Compatibility: Cherry MX switches and MX-style clones PBTfans Keycap QC Standard",
-        "image": "../client/src/images/PBTfansNovelty.webp"
+        "image": "../client/src/images/PBTfansNovelty.webp",
+        "type":"Keycaps"
     
     },
     {
@@ -41,7 +45,8 @@
         "price": 77.00,
         "quantity": 11,
         "features": "Material: ABS material Profile: Cherry profile Production Method: Doubleshot/Tripleshot for JP Sub-Legends Manufacturer: PBTfans Packaging: ABS keycaps tray with tray cover Reminder: Only keycaps included, no keyboard Compatibility: Cherry MX switches and MX-style clones Designer: SxM Designs",
-        "image": "../client/src/images/PBTfansPurpurite.webp"
+        "image": "../client/src/images/PBTfansPurpurite.webp",
+        "type":"Keycaps"
     
     }
 ]
