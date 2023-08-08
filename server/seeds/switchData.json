@@ -1,40 +1,62 @@
 [
   {
-    "brand": "Drop",
-    "product": "Holy Panda",
-    "switchType": "Tactile",
-    "quantity": 3000,
-    "price": 35
-  },
-  {
-    "brand": "Kailh",
-    "product": "Pro Mx",
+    "category": "switches",
+    "brand": "Zeal",
+    "product": "Rosélios Silent",
     "switchType": "Linear",
-    "quantity": 2000,
-    "price": 15
+    "quantity": 3000,
+    "price": 13,
+    "imageRef": 1,
+    "imageURL": "https://kb-fanatics-switches.s3.us-east-2.amazonaws.com/product-images/1.webp"
   },
   {
-    "brand": "NAJAKeys",
-    "product": "JERRZI TU LINEAR SWITCHES",
+    "category": "switches",
+    "brand": "Kailh",
+    "product": "Box Crystal Royal",
+    "switchType": "Tactile",
+    "quantity": 2000,
+    "price": 6,
+    "imageRef": 2,
+    "imageURL": "https://kb-fanatics-switches.s3.us-east-2.amazonaws.com/product-images/2.webp"
+  },
+  {
+    "category": "switches",
+    "brand": "Jerrzi",
+    "product": "Tu",
     "switchType": "Linear",
     "quantity": 17,
     "price": 11,
-    "image": "JERRZI_TU_LINEAR_SWITCHES.webp"
+    "imageRef": 3,
+    "imageURL": "https://kb-fanatics-switches.s3.us-east-2.amazonaws.com/product-images/3.webp"
   },
   {
+    "category": "switches",
     "brand": "Haimu",
-    "product": "HAIMU MIDDLE NIGHT LINEAR SWITCHES 10pcs price should be float 4.30",
+    "product": "Middle Night",
     "switchType": "Linear",
-    "quantity": 100, 
+    "quantity": 100,
     "price": 4,
-    "image": "HAIMU_MIDDLE_NIGHT_LINEAR_SWITCHES.webp"
+    "imageRef": 4,
+    "imageURL": "https://kb-fanatics-switches.s3.us-east-2.amazonaws.com/product-images/4.webp"
   },
   {
+    "category": "switches",
     "brand": "Cherry",
-    "product": "CHERRY MX HYPERGLIDE GREEN TACTILE SWITCHES 10pcs price should be float 3.50",
+    "product": "MX Hyperglide Green",
     "switchType": "Linear",
-    "quantity": 29, 
+    "quantity": 29,
     "price": 4,
-    "image": "CHERRY_MX_HYPERGLIDE_GREEN_TACTILE_SWITCHES.webp"
+    "imageRef": 5,
+    "imageURL": "https://kb-fanatics-switches.s3.us-east-2.amazonaws.com/product-images/5.webp"
+  },
+  {
+    "category": "switches",
+    "brand": "NovelKeys X Kailh",
+    "product": "Box Thick",
+    "switchType": "Clicky",
+    "quantity": 100,
+    "price": 5,
+    "imageRef": 6,
+    "imageURL": "https://kb-fanatics-switches.s3.us-east-2.amazonaws.com/product-images/6.webp"
   }
 ]

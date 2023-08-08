@@ -1,6 +1,11 @@
 import { Schema, model } from "mongoose";
 
 const switchSchema = new Schema({
+  category: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   brand: {
     type: String,
     required: true,
@@ -24,7 +29,7 @@ const switchSchema = new Schema({
     type: Number,
     required: true,
   },
-  image: {
+  imageURL: {
     type: String,
     trim: true,
   },
