@@ -5,11 +5,9 @@ import { addToCart } from "../../utils/cartSlice";
 import { GET_SWITCHES } from "../../utils/queries";
 import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
 import styles from "./Switches.module.css";
-import img from "./images/gateron_g_pro_3.0_silver_linear.webp";
 
 function Switches() {
   const dispatch = useDispatch();
-  // const cart = useSelector((state) => state.cart); // Access the cart array from the store
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
@@ -29,9 +27,9 @@ function Switches() {
         and linear switches below.
       </p>
       <div className={styles.cards}>
-        {data.switches.map(({ _id, brand, product, switchType, price, quantity }) => (
+        {data.switches.map(({ _id, brand, product, switchType, price, quantity, imageURL }) => (
           <div key={_id} className={styles.card}>
-            <img src={img} alt={brand} className={styles.cardImage} />
+            <img src={imageURL} alt={brand} className={styles.cardImage} />
             <div className={styles.cardCopy}>
               <h3 className={styles.cardTitle}>
                 {brand} {product}
@@ -42,7 +40,7 @@ function Switches() {
                 <p>Price: ${price} / (Pack of 10)</p>
               </div>
               <AddToCartButton
-                onClick={() => handleAddToCart({ _id, brand, product, price, img })}
+                onClick={() => handleAddToCart({ _id, brand, product, price, imageURL })}
               />
             </div>
           </div>

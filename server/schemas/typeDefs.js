@@ -3,12 +3,13 @@ import { gql } from "apollo-server-express";
 const typeDefs = gql`
   type SwitchModel {
     _id: ID
+    category: String
     brand: String
     product: String
     switchType: String
     quantity: Int
     price: Int
-    image: String
+    imageURL: String
   }
   type User {
     user_ID: ID
@@ -18,7 +19,7 @@ const typeDefs = gql`
     address1: String
     address2: String
     city: String
-    state_province: String
+    stateProvince: String
     country: String
     phoneNum: String
     creditCard: String
@@ -42,13 +43,18 @@ const typeDefs = gql`
     subTotal: Int
   }
   type Keyboard {
-    product_ID: ID
-    prodName: String
+    _id: ID
     brand: String
+    model: String
+    color: String
+    keycaps: String
+    plate: String
+    case: String
+    switches: String
+    hotswap: Boolean
     price: Int
     quantity: Int
-    features: String
-    image: String
+    imageURL: String
   }
   type Keycap {
     product_ID: ID
@@ -76,14 +82,14 @@ const typeDefs = gql`
 
   type Mutation {
     signup(
-    fName: String!
-    LName: String!
-    eMail: String!
-    password: String!
-    address1: String!
-    city: String!
-    stateProvince: String!
-    country: String!
+      fName: String!
+      LName: String!
+      eMail: String!
+      password: String!
+      address1: String!
+      city: String!
+      stateProvince: String!
+      country: String!
     ): AuthPayload
   }
 `;

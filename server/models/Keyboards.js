@@ -1,14 +1,38 @@
 import { Schema, model } from "mongoose";
 
 const keyboardSchema = new Schema({
-  prodName: {
+  brand: {
     type: String,
     required: true,
     trim: true,
   },
-  brand: {
+  model: {
     type: String,
     required: true,
+    trim: true,
+  },
+  color: {
+    type: String,
+    trim: true,
+  },
+  keycaps: {
+    type: String,
+    trim: true,
+  },
+  plate: {
+    type: String,
+    trim: true,
+  },
+  case: {
+    type: String,
+    trim: true,
+  },
+  switches: {
+    type: String,
+    trim: true,
+  },
+  hotswap: {
+    type: Boolean,
     trim: true,
   },
   price: {
@@ -19,18 +43,10 @@ const keyboardSchema = new Schema({
     type: Number,
     required: true,
   },
-  features: {
+  imageURL: {
     type: String,
     trim: true,
   },
-  image: {
-    type: String,
-    trim: true,
-  },
-  type: {
-    type: String,
-    trim: true,
-  }
 });
 
 const Keyboard = model("Keyboard", keyboardSchema);
