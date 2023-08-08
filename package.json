@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/matthew-millard/kb-fanatics#readme",
   "dependencies": {
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.1",
     "react-hook-form": "^7.45.2"
