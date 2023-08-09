@@ -5,6 +5,7 @@ import Keyboard from "../models/Keyboards.js";
 import Order from "../models/Order.js";
 import Cart from "../models/Cart.js";
 import Deskmat from "../models/Deskmats.js";
+import Accessory from "../models/Accessories.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -34,6 +35,13 @@ const resolvers = {
     deskmats: async () => {
       try {
         return await Deskmat.find({});
+      } catch (error) {
+        throw new Error("Error fetching deskmats");
+      }
+    },
+    accessories: async () => {
+      try {
+        return await Accessory.find({});
       } catch (error) {
         throw new Error("Error fetching deskmats");
       }
