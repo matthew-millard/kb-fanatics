@@ -1,8 +1,9 @@
 import db from "../config/connection.js";
-import { SwitchModel, Keyboard, Keycap, User } from "../models/index.js"; // Import all models
+import { SwitchModel, Keyboard, Keycap, User, Deskmat } from "../models/index.js"; // Import all models
 import switchData from "./switchData.json" assert { type: "json" };
 import keyboardData from "./keyboardData.json" assert { type: "json" };
 import keycapsData from "./keycapsData.json" assert { type: "json" };
+import deskmatData from "./deskmatData.json" assert { type: "json" };
 import userData from "./userData.json" assert { type: "json" };
 import bcrypt from "bcrypt";
 
@@ -12,6 +13,7 @@ db.once("open", async () => {
       SwitchModel.deleteMany({}),
       Keyboard.deleteMany({}),
       Keycap.deleteMany({}),
+      Deskmat.deleteMany({}),
       User.deleteMany({}),
     ]);
 
@@ -36,6 +38,7 @@ db.once("open", async () => {
       SwitchModel.insertMany(switchData),
       Keyboard.insertMany(keyboardData),
       Keycap.insertMany(keycapsData),
+      Deskmat.insertMany(deskmatData),
       User.insertMany(hashedUserData),
     ]);
 

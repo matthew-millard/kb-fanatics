@@ -48,3 +48,17 @@ export const GET_KEYCAPS = gql`
     }
   }
 `;
+
+// eslint-disable-next-line import/prefer-default-export
+export const GET_DESKMATS = gql`
+  query GetDeskMats {
+    deskmats {
+      _id
+      brand
+      model
+      price
+      quantity
+      imageURL
+    }
+  }
+`;

@@ -4,6 +4,7 @@ import Keycap from "../models/Keycaps.js";
 import Keyboard from "../models/Keyboards.js";
 import Order from "../models/Order.js";
 import Cart from "../models/Cart.js";
+import Deskmat from "../models/Deskmats.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -28,6 +29,13 @@ const resolvers = {
         return await Keycap.find({});
       } catch (error) {
         throw new Error("Error fetching keycaps");
+      }
+    },
+    deskmats: async () => {
+      try {
+        return await Deskmat.find({});
+      } catch (error) {
+        throw new Error("Error fetching deskmats");
       }
     },
     users: async () => {
