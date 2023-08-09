@@ -66,6 +66,16 @@ const typeDefs = gql`
     imageURL: String
   }
 
+  type Deskmat {
+    _id: ID
+    category: String
+    brand: String
+    model: String
+    price: Int
+    quantity: Int
+    imageURL: String
+  }
+
   type Query {
     switches: [SwitchModel]
     users: [User]
@@ -73,6 +83,7 @@ const typeDefs = gql`
     cart: [Cart]
     keyboards: [Keyboard]
     keycaps: [Keycap]
+    deskmats: [Deskmat]
   }
 
   type AuthPayload {
