@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
-import bcrypt from 'bcrypt';
-import axios from 'axios';
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
   fName: {
@@ -33,7 +32,7 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
-  state_province: {
+  stateProvince: {
     type: String,
     required: true,
     trim: true,
@@ -54,9 +53,9 @@ const userSchema = new Schema({
     trim: true,
     validate: {
       validator: function (value) {
-        return value.length === 16; 
+        return value.length === 16;
       },
-      message: 'Credit card number must be 16 characters long',
+      message: "Credit card number must be 16 characters long",
     },
   },
   expiration: {
@@ -69,9 +68,9 @@ const userSchema = new Schema({
     required: true,
     validate: {
       validator: function (value) {
-        return value.length >= 8; 
+        return value.length >= 8;
       },
-      message: 'Password must be at least 8 characters long',
+      message: "Password must be at least 8 characters long",
     },
   },
   // addressValidation: {
@@ -82,8 +81,8 @@ const userSchema = new Schema({
 
 const User = model("User", userSchema);
 
-userSchema.pre('save', async function (next) {
-  if (this.isModified('password') || this.isNew) {
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password") || this.isNew) {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(this.password, salt);
@@ -95,14 +94,13 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.pre('save', async function (next) {
-  if (this.isModified('creditCard') || this.isNew) {
+userSchema.pre("save", async function (next) {
+  if (this.isModified("creditCard") || this.isNew) {
     try {
       const partialCreditCard = this.creditCard.substring(0, 12);
-      const hashedCreditCard = await bcrypt.hash(partialCreditCard, 10);     
-      const asterisks = '*'.repeat(12);
+      const hashedCreditCard = await bcrypt.hash(partialCreditCard, 10);
+      const asterisks = "*".repeat(12);
       this.creditCard = `${asterisks}${this.creditCard.substring(12)}`;
-
     } catch (error) {
       return next(error);
     }
