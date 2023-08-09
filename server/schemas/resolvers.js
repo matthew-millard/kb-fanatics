@@ -4,9 +4,8 @@ import Keycap from "../models/Keycaps.js";
 import Keyboard from "../models/Keyboards.js";
 import Order from "../models/Order.js";
 import Cart from "../models/Cart.js";
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken';
-
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const resolvers = {
   Query: {
@@ -54,40 +53,51 @@ const resolvers = {
     },
   },
   Mutation: {
-    signup: async (_, { fName, LName, eMail, password, address1, city, stateProvince, country }) => {
+    signup: async (
+      _,
+      { fName, LName, eMail, password, address1, city, stateProvince, country },
+    ) => {
       try {
         // First, check if a user with this email already exists
         const existingUser = await User.findOne({ eMail });
         if (existingUser) {
-          throw new Error('User with this email already exists');
+          throw new Error("User with this email already exists");
         }
-    
+
         // Hash the password before saving the user to the database
         const hashedPassword = await bcrypt.hash(password, 10);
-    
+
         // Create a new user
-        const user = new User({ fName, LName, eMail, password: hashedPassword, address1, city, stateProvince, country });
+        const user = new User({
+          fName,
+          LName,
+          eMail,
+          password: hashedPassword,
+          address1,
+          city,
+          stateProvince,
+          country,
+        });
         const result = await user.save();
-    
+
         // Create a JWT token
-        const token = jwt.sign({ user_ID: result._id, eMail: result.eMail }, 'JWT_SECRET_KEY', { expiresIn: '1d' });
+        const token = jwt.sign({ user_ID: result._id, eMail: result.eMail }, "JWT_SECRET_KEY", {
+          expiresIn: "1d",
+        });
 
-
-    
         return {
           token,
           user: result,
         };
       } catch (error) {
-        if (error.name === 'ValidationError') {
+        if (error.name === "ValidationError") {
           console.error(error.message);
           console.error(error.errors);
         }
-        console.error(error);  // Log the error here
-        throw error;  // Re-throw the error to be caught by Apollo Server
+        console.error(error); // Log the error here
+        throw error; // Re-throw the error to be caught by Apollo Server
       }
     },
-    
   },
 };
 
