@@ -70,12 +70,7 @@ export default function Footer() {
       </div>
       <div className={styles.payments}>
         {payments.map((paymentObj) => (
-          <paymentObj.brand
-            key={paymentObj.id}
-            aria-label={paymentObj.label}
-            icon={paymentObj.brand}
-            size={30}
-          />
+          <paymentObj.brand key={paymentObj.id} aria-label={paymentObj.label} size={30} />
         ))}
       </div>
       <div className={styles.copyright}>

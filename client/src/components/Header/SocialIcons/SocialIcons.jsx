@@ -7,7 +7,7 @@ function SocialIcons() {
   return (
     <div className={styles.socialIcons}>
       {socialIcons.map((iconObj) => (
-        <a href={iconObj.url} className={iconObj.className}>
+        <a href={iconObj.url} className={iconObj.className} key={iconObj.id}>
           <FontAwesomeIcon icon={iconObj.icon} />
         </a>
       ))}

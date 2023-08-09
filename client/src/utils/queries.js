@@ -62,3 +62,17 @@ export const GET_DESKMATS = gql`
     }
   }
 `;
+
+// eslint-disable-next-line import/prefer-default-export
+export const GET_ACCESSORIES = gql`
+  query GetAccessories {
+    accessories {
+      _id
+      brand
+      model
+      price
+      quantity
+      imageURL
+    }
+  }
+`;
