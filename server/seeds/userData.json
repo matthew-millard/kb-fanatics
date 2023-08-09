@@ -8,7 +8,8 @@
     "stateProvince": "New Jersey",
     "country": "US",
     "creditCard": "4510123478914561",
-    "expiration": "02/26"
+    "expiration": "02/26",
+    "password": "gothamKnight"
   },
   {
     "fName": "Dick",
@@ -21,7 +22,8 @@
     "country": "US",
     "phoneNum": "555-555-6666",
     "creditCard": "4510234598671234",
-    "expiration": "07/27"
+    "expiration": "07/27",
+    "password": "gothamKnight"
   },
   {
     "fName": "Tim",
@@ -34,7 +36,7 @@
     "country": "US",
     "phoneNum": "555-555-7777",
     "creditCard": "4510467282461234",
-    "expiration": "08/25"
+    "expiration": "08/25",
+    "password": "gothamKnight"
   }
 ]
-

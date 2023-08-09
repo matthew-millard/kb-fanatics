@@ -34,3 +34,17 @@ export const GET_KEYBOARDS = gql`
     }
   }
 `;
+
+// eslint-disable-next-line import/prefer-default-export
+export const GET_KEYCAPS = gql`
+  query GetKeycaps {
+    keycaps {
+      _id
+      brand
+      model
+      price
+      quantity
+      imageURL
+    }
+  }
+`;

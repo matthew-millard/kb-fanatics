@@ -57,13 +57,13 @@ const typeDefs = gql`
     imageURL: String
   }
   type Keycap {
-    product_ID: ID
-    prodName: String
+    _id: ID
+    category: String
     brand: String
+    model: String
     price: Int
     quantity: Int
-    features: String
-    image: String
+    imageURL: String
   }
 
   type Query {
