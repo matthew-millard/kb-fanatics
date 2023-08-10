@@ -4,8 +4,10 @@ import Keycap from "../models/Keycaps.js";
 import Keyboard from "../models/Keyboards.js";
 import Order from "../models/Order.js";
 import Cart from "../models/Cart.js";
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import Deskmat from "../models/Deskmats.js";
+import Accessory from "../models/Accessories.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const resolvers = {
   Query: {
@@ -30,6 +32,20 @@ const resolvers = {
         throw new Error("Error fetching keycaps");
       }
     },
+    deskmats: async () => {
+      try {
+        return await Deskmat.find({});
+      } catch (error) {
+        throw new Error("Error fetching deskmats");
+      }
+    },
+    accessories: async () => {
+      try {
+        return await Accessory.find({});
+      } catch (error) {
+        throw new Error("Error fetching deskmats");
+      }
+    },
     users: async () => {
       try {
         return await User.find({});
@@ -51,6 +67,7 @@ const resolvers = {
         throw new Error("Error fetching cart");
       }
     },
+
     userCart: async (_, args, context) => {
       try {
         // Verify the token and extract the user ID
@@ -70,13 +87,51 @@ const resolvers = {
       }
     },
   },
-
   Mutation: {
-    signup: async (_, { fName, LName, eMail, password, address1, city, stateProvince, country }) => {
-      // Check if user already exists
-      const existingUser = await User.findOne({ eMail });
-      if (existingUser) {
-        throw new Error('A user with that email already exists.');
+    signup: async (
+      _,
+      { fName, LName, eMail, password, address1, city, stateProvince, country },
+    ) => {
+      try {
+        // First, check if a user with this email already exists
+        const existingUser = await User.findOne({ eMail });
+        if (existingUser) {
+          throw new Error("User with this email already exists");
+        }
+
+        // Hash the password before saving the user to the database
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create a new user
+        const user = new User({
+          fName,
+          LName,
+          eMail,
+          password: hashedPassword,
+          address1,
+          city,
+          stateProvince,
+          country,
+        });
+        const result = await user.save();
+
+        // Create a JWT token
+        const token = jwt.sign({ user_ID: result._id, eMail: result.eMail }, "JWT_SECRET_KEY", {
+          expiresIn: "1d",
+        });
+
+        return {
+          token,
+          user: result,
+        };
+      } catch (error) {
+        if (error.name === "ValidationError") {
+          console.error(error.message);
+          console.error(error.errors);
+        }
+        console.error(error); // Log the error here
+        throw error; // Re-throw the error to be caught by Apollo Server
+
       }
   
       // Hash password and create new user
@@ -96,6 +151,7 @@ const resolvers = {
       const token = jwt.sign({ user_ID: newUser._id }, 'JWT_SECRET_KEY', { expiresIn: '1d' });
       return { token, user: newUser };
     },
+
 
     login: async (_, { eMail, password }) => {
       const user = await User.findOne({ eMail: new RegExp('^' + eMail + '$', 'i') });
@@ -124,6 +180,8 @@ const resolvers = {
           token,
           user,
       };
+
+
   },
   
   }

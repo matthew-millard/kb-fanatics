@@ -11,7 +11,12 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "uploadKeyboardImages": "cd server && node scripts/uploadKeyboardImagesToS3.js",
+    "uploadSwitchImages": "cd server && node scripts/uploadSwitchImagesToS3.js",
+    "uploadKeycapImages": "cd server && node scripts/uploadKeycapImagesToS3.js",
+    "uploadDeskmatImages": "cd server && node scripts/uploadDeskmatImagesToS3.js",
+    "uploadAccessoryImages": "cd server && node scripts/uploadAccessoryImagesToS3.js"
   },
   "repository": {
     "type": "git",

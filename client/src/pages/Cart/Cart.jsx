@@ -57,11 +57,11 @@ function Cart() {
             {cart.map((item) => (
               <li key={item._id} className={styles.cartItem}>
                 <div>
-                  <img src={item.img} alt={item.brand} className={styles.itemImage} />
+                  <img src={item.imageURL} alt={item.brand} className={styles.itemImage} />
                 </div>
                 <div className={styles.itemInfo}>
                   <p>
-                    {item.brand} {item.product}
+                    {item.brand} {item.product} {item.model}
                   </p>
                 </div>
                 <p className={styles.itemPrice}>${item.price}</p>

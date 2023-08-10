@@ -3,12 +3,13 @@ import { gql } from "apollo-server-express";
 const typeDefs = gql`
   type SwitchModel {
     _id: ID
+    category: String
     brand: String
     product: String
     switchType: String
     quantity: Int
     price: Int
-    image: String
+    imageURL: String
   }
 
   type User {
@@ -47,23 +48,48 @@ const typeDefs = gql`
   }
 
   type Keyboard {
-    product_ID: ID
-    prodName: String
+    _id: ID
     brand: String
+    model: String
+    color: String
+    keycaps: String
+    plate: String
+    case: String
+    switches: String
+    hotswap: Boolean
     price: Int
     quantity: Int
-    features: String
-    image: String
+    imageURL: String
   }
 
   type Keycap {
-    product_ID: ID
-    prodName: String
+    _id: ID
+    category: String
     brand: String
+    model: String
     price: Int
     quantity: Int
-    features: String
-    image: String
+    imageURL: String
+  }
+
+  type Deskmat {
+    _id: ID
+    category: String
+    brand: String
+    model: String
+    price: Int
+    quantity: Int
+    imageURL: String
+  }
+
+  type Accessory {
+    _id: ID
+    category: String
+    brand: String
+    model: String
+    price: Int
+    quantity: Int
+    imageURL: String
   }
 
   type Query {
@@ -74,6 +100,8 @@ const typeDefs = gql`
     userCart: Cart
     keyboards: [Keyboard]
     keycaps: [Keycap]
+    deskmats: [Deskmat]
+    accessories: [Accessory]
   }
 
   type AuthPayload {
@@ -96,6 +124,8 @@ const typeDefs = gql`
       eMail: String!
       password: String!
     ): AuthPayload!
+
+   
   }
 `;
 

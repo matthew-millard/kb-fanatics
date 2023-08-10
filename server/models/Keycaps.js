@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const keycapSchema = new Schema({
-  prodName: {
+  category: {
     type: String,
     required: true,
     trim: true,
@@ -9,7 +9,11 @@ const keycapSchema = new Schema({
   brand: {
     type: String,
     required: true,
-    // unique?
+    trim: true,
+  },
+  model: {
+    type: String,
+    required: true,
     trim: true,
   },
   price: {
@@ -20,18 +24,10 @@ const keycapSchema = new Schema({
     type: Number,
     required: true,
   },
-  features: {
+  imageURL: {
     type: String,
     trim: true,
   },
-  image: {
-    type: String,
-    trim: true,
-  },
-  type: {
-    type: String,
-    trim: true,
-  }
 });
 
 const Keycap = model("Keycap", keycapSchema);

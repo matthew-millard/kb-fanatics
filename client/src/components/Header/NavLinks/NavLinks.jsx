@@ -8,7 +8,7 @@ function NavLinks({ mobile }) {
   return (
     <ul className={mobile ? styles.navLinksMobile : styles.navLinks}>
       {navLinks.map((linkObj) => (
-        <li>
+        <li key={linkObj.title}>
           <Link to={linkObj.url}>{linkObj.title}</Link>
         </li>
       ))}
@@ -17,7 +17,11 @@ function NavLinks({ mobile }) {
 }
 
 NavLinks.propTypes = {
-  mobile: PropTypes.bool.isRequired,
+  mobile: PropTypes.bool,
+};
+
+NavLinks.defaultProps = {
+  mobile: false,
 };
 
 export default NavLinks;
