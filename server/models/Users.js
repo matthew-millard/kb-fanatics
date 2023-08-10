@@ -32,7 +32,7 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
-  state_province: {
+  stateProvince: {
     type: String,
     required: true,
     trim: true,

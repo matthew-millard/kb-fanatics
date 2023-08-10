@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import styles from "./MyAccount.module.css";
 import SIGNUP_MUTATION from "./signup";
-import LOGIN_MUTATION from "./login";
+import LOGIN_MUTATION from "./loginMutation";
 
 function MyAccount() {
+  const navigate = useNavigate();
+
   const [signup] = useMutation(SIGNUP_MUTATION);
   const [login] = useMutation(LOGIN_MUTATION);
   const [fName, setFName] = useState("");
@@ -17,13 +20,12 @@ function MyAccount() {
   const [country, setCountry] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
   const [isLogin, setIsLogin] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await signup({
+      const { data } = await signup({
         variables: {
           fName,
           LName,
@@ -35,22 +37,26 @@ function MyAccount() {
           country,
         },
       });
+      localStorage.setItem("token", data.signup.token);
+      navigate("/login");
     } catch (error) {
-      // console.error(error);
+      console.error(error);
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login({
+      const { data } = await login({
         variables: {
           eMail: loginEmail,
           password: loginPassword,
         },
       });
+      localStorage.setItem("token", data.login.token);
+      window.location.href = "/Dashboard";
     } catch (error) {
-      // console.error(error);
+      console.error(error);
     }
   };
 
@@ -77,7 +83,7 @@ function MyAccount() {
             Login
           </button>
         </form>
-        <button type="button" onClick={() => setIsLogin(false)}>
+        <button type="button" onClick={() => navigate("/myaccount")}>
           Switch to Signup
         </button>
       </div>
@@ -148,7 +154,7 @@ function MyAccount() {
           Create Account
         </button>
       </form>
-      <button type="button" onClick={() => setIsLogin(true)}>
+      <button type="button" onClick={() => navigate("/login")}>
         Switch to Login
       </button>
     </div>

@@ -10,37 +10,42 @@ const typeDefs = gql`
     price: Int
     image: String
   }
+
   type User {
-    user_ID: ID
+    _id: ID
     fName: String
     LName: String
     eMail: String
     address1: String
     address2: String
     city: String
-    state_province: String
+    stateProvince: String
     country: String
     phoneNum: String
     creditCard: String
     expiration: String
+    password: String # Add this line
   }
+
   type Order {
     order_ID: ID
-    userID: String
-    cartID: String
+    user_ID: ID
+    cartID: ID
     subTotal: Int
     taxes: Int
     total: Int
     status: String
   }
+
   type Cart {
     cart_ID: ID
-    itemID: String
-    quantitiy: Int
+    itemID: ID
+    quantity: Int
     prodName: String
     price: Int
     subTotal: Int
   }
+
   type Keyboard {
     product_ID: ID
     prodName: String
@@ -50,6 +55,7 @@ const typeDefs = gql`
     features: String
     image: String
   }
+
   type Keycap {
     product_ID: ID
     prodName: String
@@ -65,6 +71,7 @@ const typeDefs = gql`
     users: [User]
     orders: [Order]
     cart: [Cart]
+    userCart: Cart
     keyboards: [Keyboard]
     keycaps: [Keycap]
   }
@@ -76,15 +83,19 @@ const typeDefs = gql`
 
   type Mutation {
     signup(
-    fName: String!
-    LName: String!
-    eMail: String!
-    password: String!
-    address1: String!
-    city: String!
-    stateProvince: String!
-    country: String!
-    ): AuthPayload
+      fName: String!
+      LName: String!
+      eMail: String!
+      password: String!
+      address1: String!
+      city: String!
+      stateProvince: String!
+      country: String!
+    ): AuthPayload!
+    login(
+      eMail: String!
+      password: String!
+    ): AuthPayload!
   }
 `;
 
