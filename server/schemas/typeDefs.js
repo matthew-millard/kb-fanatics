@@ -11,8 +11,9 @@ const typeDefs = gql`
     price: Int
     imageURL: String
   }
+
   type User {
-    user_ID: ID
+    _id: ID
     fName: String
     LName: String
     eMail: String
@@ -24,24 +25,28 @@ const typeDefs = gql`
     phoneNum: String
     creditCard: String
     expiration: String
+    password: String # Add this line
   }
+
   type Order {
     order_ID: ID
-    userID: String
-    cartID: String
+    user_ID: ID
+    cartID: ID
     subTotal: Int
     taxes: Int
     total: Int
     status: String
   }
+
   type Cart {
     cart_ID: ID
-    itemID: String
-    quantitiy: Int
+    itemID: ID
+    quantity: Int
     prodName: String
     price: Int
     subTotal: Int
   }
+
   type Keyboard {
     _id: ID
     brand: String
@@ -56,6 +61,7 @@ const typeDefs = gql`
     quantity: Int
     imageURL: String
   }
+
   type Keycap {
     _id: ID
     category: String
@@ -91,6 +97,7 @@ const typeDefs = gql`
     users: [User]
     orders: [Order]
     cart: [Cart]
+    userCart: Cart
     keyboards: [Keyboard]
     keycaps: [Keycap]
     deskmats: [Deskmat]
@@ -112,7 +119,13 @@ const typeDefs = gql`
       city: String!
       stateProvince: String!
       country: String!
-    ): AuthPayload
+    ): AuthPayload!
+    login(
+      eMail: String!
+      password: String!
+    ): AuthPayload!
+
+   
   }
 `;
 
