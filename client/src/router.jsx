@@ -11,8 +11,6 @@ import {
   Accessories,
   Cart,
   MyAccount,
-  LoginPage,
-  Dashboard,
 } from "./pages";
 
 const router = createBrowserRouter([
