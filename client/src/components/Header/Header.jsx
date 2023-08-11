@@ -11,12 +11,12 @@ import SocialIcons from "./SocialIcons";
 
 export default function Header() {
   const isLoggedIn = !!localStorage.getItem("authToken");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem("authToken");
-  //   navigate("/login");
-  // };
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
 
   console.log("Rendering Header with isLoggedIn:", isLoggedIn);
   return (
