@@ -1,6 +1,43 @@
 import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
+  type User {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    address: String
+    city: String
+    stateProvince: String
+    country: String
+    postalCode: String
+    phoneNumber: String
+  }
+
+  input SignupInput {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+    address: String
+    city: String
+    stateProvince: String
+    country: String
+    postalCode: String
+    phoneNumber: String
+  }
+
+  input LoginInput {
+    email: String!
+    password: String!
+  }
+
+  type AuthResponse {
+    token: String!
+    user: User!
+  }
+
   type SwitchModel {
     _id: ID
     category: String
@@ -11,37 +48,7 @@ const typeDefs = gql`
     price: Int
     imageURL: String
   }
-  type User {
-    user_ID: ID
-    fName: String
-    LName: String
-    eMail: String
-    address1: String
-    address2: String
-    city: String
-    stateProvince: String
-    country: String
-    phoneNum: String
-    creditCard: String
-    expiration: String
-  }
-  type Order {
-    order_ID: ID
-    userID: String
-    cartID: String
-    subTotal: Int
-    taxes: Int
-    total: Int
-    status: String
-  }
-  type Cart {
-    cart_ID: ID
-    itemID: String
-    quantitiy: Int
-    prodName: String
-    price: Int
-    subTotal: Int
-  }
+
   type Keyboard {
     _id: ID
     brand: String
@@ -87,32 +94,17 @@ const typeDefs = gql`
   }
 
   type Query {
+    user(_id: ID!): User
     switches: [SwitchModel]
-    users: [User]
-    orders: [Order]
-    cart: [Cart]
     keyboards: [Keyboard]
     keycaps: [Keycap]
     deskmats: [Deskmat]
     accessories: [Accessory]
   }
 
-  type AuthPayload {
-    token: String!
-    user: User
-  }
-
   type Mutation {
-    signup(
-      fName: String!
-      LName: String!
-      eMail: String!
-      password: String!
-      address1: String!
-      city: String!
-      stateProvince: String!
-      country: String!
-    ): AuthPayload
+    signup(input: SignupInput!): User!
+    login(email: String!, password: String!): AuthResponse
   }
 `;
 

@@ -35,6 +35,6 @@ const switchSchema = new Schema({
   },
 });
 
-const SwitchModel = model("Switches", switchSchema);
+const Switch = model("Switches", switchSchema);
 
-export default SwitchModel;
+export default Switch;

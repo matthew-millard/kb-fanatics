@@ -1,42 +1,14 @@
 [
   {
-    "fName": "Bruce",
-    "LName": "Wayne",
-    "eMail": "batman@batman.com",
-    "address1": "1007 Mountain Drive",
+    "firstName": "Bruce",
+    "lastName": "Wayne",
+    "email": "batman@batman.com",
+    "password": "gothamKnight1",
+    "address": "1007 Mountain Drive",
     "city": "Gotham",
     "stateProvince": "New Jersey",
     "country": "US",
-    "creditCard": "4510123478914561",
-    "expiration": "02/26",
-    "password": "gothamKnight"
-  },
-  {
-    "fName": "Dick",
-    "LName": "Grayson",
-    "eMail": "nightwing@batman.com",
-    "address1": "1013 Parkthorne Ave",
-    "address2": "Apt 3A",
-    "city": "Bludhaven",
-    "stateProvince": "New Jersey",
-    "country": "US",
-    "phoneNum": "555-555-6666",
-    "creditCard": "4510234598671234",
-    "expiration": "07/27",
-    "password": "gothamKnight"
-  },
-  {
-    "fName": "Tim",
-    "LName": "Drake",
-    "eMail": "robin@batman.com",
-    "address1": "1033 Robinson Pk",
-    "address2": "Penthouse",
-    "city": "Gotham City",
-    "stateProvince": "New Jersey",
-    "country": "US",
-    "phoneNum": "555-555-7777",
-    "creditCard": "4510467282461234",
-    "expiration": "08/25",
-    "password": "gothamKnight"
+    "postalCode": "07016",
+    "phoneNumber": "555-555-5555"
   }
 ]
