@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
 import AWS from "aws-sdk";
 import fs from "fs/promises";
 import { createReadStream } from "fs";
 import path from "path";
 import accessoryData from "../seeds/accessoryData.json" assert { type: "json" };
+import dotenv from "dotenv";
 
 dotenv.config();
 
