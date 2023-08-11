@@ -1,5 +1,5 @@
 import db from "../config/connection.js";
-import { SwitchModel, Keyboard, Keycap, User, Deskmat, Accessory } from "../models/index.js"; // Import all models
+import { Switch, Keyboard, Keycap, User, Deskmat, Accessory } from "../models/index.js"; // Import all models
 import switchData from "./switchData.json" assert { type: "json" };
 import keyboardData from "./keyboardData.json" assert { type: "json" };
 import keycapsData from "./keycapsData.json" assert { type: "json" };
@@ -11,7 +11,7 @@ import bcrypt from "bcrypt";
 db.once("open", async () => {
   try {
     await Promise.all([
-      SwitchModel.deleteMany({}),
+      Switch.deleteMany({}),
       Keyboard.deleteMany({}),
       Keycap.deleteMany({}),
       Deskmat.deleteMany({}),
@@ -32,7 +32,7 @@ db.once("open", async () => {
     );
 
     await Promise.all([
-      SwitchModel.insertMany(switchData),
+      Switch.insertMany(switchData),
       Keyboard.insertMany(keyboardData),
       Keycap.insertMany(keycapsData),
       Deskmat.insertMany(deskmatData),
