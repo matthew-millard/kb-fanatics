@@ -1,8 +1,19 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+
 import App from "./App";
-import { Home, Keyboards, Switches, Keycaps, Deskmats, Accessories, Cart } from "./pages";
-import MyAccount from "./pages/MyAccount";
+import {
+  Home,
+  Keyboards,
+  Switches,
+  Keycaps,
+  Deskmats,
+  Accessories,
+  Cart,
+  MyAccount,
+  LoginPage,
+  Dashboard,
+} from "./pages";
 
 const router = createBrowserRouter([
   {

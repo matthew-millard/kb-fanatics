@@ -48,7 +48,7 @@ const typeDefs = gql`
     price: Int
     imageURL: String
   }
-
+  
   type Keyboard {
     _id: ID
     brand: String
@@ -63,6 +63,7 @@ const typeDefs = gql`
     quantity: Int
     imageURL: String
   }
+
   type Keycap {
     _id: ID
     category: String
@@ -103,8 +104,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    signup(input: SignupInput!): User!
-    login(email: String!, password: String!): AuthResponse
+    
   }
 `;
 

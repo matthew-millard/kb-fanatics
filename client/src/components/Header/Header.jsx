@@ -1,13 +1,22 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
-import Account from "./Account";
 import Cart from "./Cart";
 import SocialIcons from "./SocialIcons";
 
 export default function Header() {
+  const isLoggedIn = !!localStorage.getItem("authToken");
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
+  console.log("Rendering Header with isLoggedIn:", isLoggedIn);
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -21,7 +30,16 @@ export default function Header() {
       </div>
       <div className={styles.userControls}>
         <div className={styles.account}>
-          <Account />
+          {isLoggedIn ? (
+            <>
+              <Link to="/dashboard">Dashboard</Link>
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
         </div>
         <div className={styles.cart}>
           <Cart />
@@ -34,4 +52,4 @@ export default function Header() {
   );
 }
 
-export { NavLinks, Account, Cart, SocialIcons, Logo };
+export { NavLinks, Cart, SocialIcons, Logo };
