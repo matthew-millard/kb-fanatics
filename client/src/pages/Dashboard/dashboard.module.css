@@ -1,11 +1,18 @@
 .dashboardContainer {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontal centering */
+  justify-content: center; /* Vertical centering */
+}
 
-  
+.centerImage {
+  width: 300px; /* Adjust as necessary */
+  height: auto;
+  margin: 20px 0; /* Add some spacing above and below the image */
+}

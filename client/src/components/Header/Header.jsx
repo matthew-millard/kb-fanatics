@@ -54,5 +54,3 @@ export default function Header() {
 }
 
 export { NavLinks, Cart, SocialIcons, Logo };
-
-
