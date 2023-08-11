@@ -17,5 +17,5 @@ root.render(
     <ApolloProvider client={client}>
       <RouterProvider router={router} />
     </ApolloProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

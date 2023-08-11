@@ -12,7 +12,7 @@ import {
   Cart,
   MyAccount,
   LoginPage,
-  Dashboard
+  Dashboard,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -26,9 +26,7 @@ const router = createBrowserRouter([
       { path: "/deskmats", element: <Deskmats /> },
       { path: "/accessories", element: <Accessories /> },
       { path: "/cart", element: <Cart /> },
-      { path: "/login", element: <LoginPage /> },// Newly added route
       { path: "/myaccount", element: <MyAccount /> },
-      { path: "/dashboard", element: <Dashboard /> }, // Newly added route
     ],
   },
 ]);

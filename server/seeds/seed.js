@@ -23,15 +23,10 @@ db.once("open", async () => {
       userData.map(async (user) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(user.password, salt);
-        const partialCreditCard = user.creditCard.substring(0, 12);
-        const hashedPartialCreditCard = await bcrypt.hash(partialCreditCard, salt);
-        const asterisks = "*".repeat(12);
-        const hashedCreditCard = `${asterisks}${user.creditCard.substring(12)}`;
 
         return {
           ...user,
           password: hashedPassword,
-          creditCard: hashedCreditCard,
         };
       }),
     );
@@ -42,7 +37,7 @@ db.once("open", async () => {
       Keycap.insertMany(keycapsData),
       Deskmat.insertMany(deskmatData),
       Accessory.insertMany(accessoryData),
-      User.insertMany(hashedUserData),
+      User.insertMany(hashedUserData, { validateBeforeSave: false }),
     ]);
 
     console.log("Database seeded 🌱");

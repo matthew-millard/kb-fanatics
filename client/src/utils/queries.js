@@ -76,3 +76,20 @@ export const GET_ACCESSORIES = gql`
     }
   }
 `;
+
+export const USER_QUERY = gql`
+  query GetUser($_id: ID!) {
+    user(_id: $_id) {
+      _id
+      firstName
+      lastName
+      email
+      address
+      city
+      country
+      stateProvince
+      postalCode
+      phoneNumber
+    }
+  }
+`;
