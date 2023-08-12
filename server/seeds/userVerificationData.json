@@ -1,0 +1,8 @@
+[
+    {
+    "email": "batman@batman.com", 
+    "uniqueString": "thisisauniquestring",
+    "createdAt": 1691879203729,
+    "expiresAt": 1691882803729
+  }
+]

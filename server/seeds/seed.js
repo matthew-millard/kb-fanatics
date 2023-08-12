@@ -1,5 +1,5 @@
 import db from "../config/connection.js";
-import { Switch, Keyboard, Keycap, User, Deskmat, Accessory, Order } from "../models/index.js"; // Import all models
+import { Switch, Keyboard, Keycap, User, Deskmat, Accessory, Order, UserVerification } from "../models/index.js"; // Import all models
 import switchData from "./switchData.json" assert { type: "json" };
 import keyboardData from "./keyboardData.json" assert { type: "json" };
 import keycapsData from "./keycapsData.json" assert { type: "json" };
@@ -7,6 +7,7 @@ import deskmatData from "./deskmatData.json" assert { type: "json" };
 import accessoryData from "./accessoryData.json" assert { type: "json" };
 import userData from "./userData.json" assert { type: "json" };
 import orderData from "./orderData.json" assert { type: "json" };
+import userVerification from "./userVerificationData.json" assert {type: "json"};
 import bcrypt from "bcrypt";
 
 db.once("open", async () => {
@@ -19,6 +20,7 @@ db.once("open", async () => {
       Accessory.deleteMany({}),
       User.deleteMany({}),
       Order.deleteMany({}),
+      UserVerification.deleteMany({}),
     ]);
 
     const hashedUserData = await Promise.all(
@@ -41,6 +43,7 @@ db.once("open", async () => {
       Accessory.insertMany(accessoryData),
       User.insertMany(hashedUserData, { validateBeforeSave: false }),
       Order.insertMany(orderData),
+      UserVerification.insertMany(userVerification),
     ]);
 
     console.log("Database seeded 🌱");

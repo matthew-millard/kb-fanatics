@@ -63,6 +63,11 @@ const userSchema = new Schema({
     // required: true,
     trim: true,
   },
+  verified: {
+    type: Boolean,
+    trim: true,
+    default: false,
+  },
 });
 
 const User = model("User", userSchema);

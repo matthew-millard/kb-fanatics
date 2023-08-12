@@ -9,6 +9,7 @@
     "stateProvince": "New Jersey",
     "country": "US",
     "postalCode": "07016",
-    "phoneNumber": "555-555-5555"
+    "phoneNumber": "555-555-5555",
+    "verified": true
   }
 ]
