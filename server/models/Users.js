@@ -1,78 +1,72 @@
 import { Schema, model } from "mongoose";
-import bcrypt from "bcrypt";
-import axios from "axios";
 
 const userSchema = new Schema({
-  fName: {
+  firstName: {
     type: String,
     required: true,
     trim: true,
   },
-  LName: {
+  lastName: {
     type: String,
     required: true,
     trim: true,
   },
-  eMail: {
+  email: {
     type: String,
+    validate: {
+      validator: function (v) {
+        return /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(v);
+      },
+      message: (props) => `${props.value} is not a valid email!`,
+    },
     required: true,
     unique: true,
-    trim: true,
-  },
-  address1: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  address2: {
-    type: String,
-    trim: true,
-  },
-  city: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  stateProvince: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  country: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  phoneNum: {
-    type: String,
-    required: false,
-    trim: true,
-  },
-  creditCard: {
-    type: String,
-    required: false,
-    trim: true,
-    validate: {
-      validator: function (value) {
-        return value.length === 16;
-      },
-      message: "Credit card number must be 16 characters long",
-    },
-  },
-  expiration: {
-    type: String,
-    required: false,
     trim: true,
   },
   password: {
     type: String,
     required: true,
-    validate: {
-      validator: function (value) {
-        return value.length >= 8;
-      },
-      message: "Password must be at least 8 characters long",
-    },
+    trim: true,
+  },
+  address: {
+    type: String,
+    // required: true,
+    trim: true,
+  },
+  city: {
+    type: String,
+    // required: true,
+    trim: true,
+  },
+  stateProvince: {
+    type: String,
+    // required: true,
+  },
+  country: {
+    type: String,
+    // required: true,
+  },
+  postalCode: {
+    type: String,
+    // required: true,
+    trim: true,
+  },
+  phoneNumber: {
+    type: String,
+    // validate: {
+    //   validator: function (v) {
+    //     // Assume phone number is a series of 10-15 digits, possibly with dashes
+    //     return /^\d{10,15}$|^\d{3}-\d{3}-\d{4}$|^\d{3}-\d{4}-\d{4}$/.test(v);
+    //   },
+    //   message: (props) => `${props.value} is not a valid phone number!`,
+    // },
+    // required: true,
+    trim: true,
+  },
+  verified: {
+    type: Boolean,
+    trim: true,
+    default: false,
   },
   addressValidation: {
     type: Boolean,
@@ -108,45 +102,5 @@ userSchema.pre("save", async function (next) {
   }
   next();
 });
-
-
-  
-userSchema.pre('save', async function (next) {
-  if (this.isModified('address1') || this.isNew) {
-    try {
-      const apiKey = 'AIzaSyAMVyhE-qzphAZZSzsyryqRo7VtTpkwGeY'; 
-
-      const addressLines = [this.address1];
-      if (this.address2) {
-        addressLines.push(this.address2);
-      }
-
-      const requestData = {
-        address: {
-          regionCode: this.country,
-          addressLines: addressLines,
-        },
-        enableUspsCass: true,
-      };
-
-      const response = await axios.post(
-        `https://addressvalidation.googleapis.com/v1:validateAddress?key=${apiKey}`,
-        requestData
-      );
-
-      if (response.data.isValid) {
-        this.addressValidation = true;
-      } else {
-        this.addressValidation = false;
-        console.error('Address validation failed:', response.data.errorMessage);
-      }
-    } catch (error) {
-      console.error('Error validating address:', error);
-    }
-  }
-
-  next();
-});
-
 
 export default User;

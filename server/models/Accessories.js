@@ -1,35 +1,35 @@
 import { Schema, model } from "mongoose";
 
-const orderSchema = new Schema({
-  userID: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  cartID: {
+const accessoriesSchema = new Schema({
+  category: {
     type: String,
     required: true,
     trim: true,
   },
-  subTotal: {
-    type: Number,
-    required: true,
-  },
-  taxes: {
-    type: Number,
-    required: true,
-  },
-  total: {
-    type: Number,
-    required: true,
-  },
-  status: {
+  brand: {
     type: String,
     required: true,
+    trim: true,
+  },
+  model: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  imageURL: {
+    type: String,
     trim: true,
   },
 });
 
-const Order = model("Order", orderSchema);
+const Accessory = model("Accessory", accessoriesSchema);
 
-export default Order;
+export default Accessory;

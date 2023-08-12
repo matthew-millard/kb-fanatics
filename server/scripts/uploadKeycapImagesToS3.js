@@ -2,14 +2,16 @@ import AWS from "aws-sdk";
 import fs from "fs/promises";
 import { createReadStream } from "fs";
 import path from "path";
-
 import keycapData from "../seeds/keycapsData.json" assert { type: "json" };
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Configure AWS SDK
 AWS.config.update({
-  accessKeyId: "AKIAS3AUNLLOH2ULWWJN",
-  secretAccessKey: "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",
-  region: "us-east-2",
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
 });
 
 // Create S3 service object

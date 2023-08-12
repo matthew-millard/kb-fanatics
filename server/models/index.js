@@ -1,8 +1,10 @@
-import SwitchModel from "./Switches.js";
+import Switch from "./Switches.js";
 import User from "./Users.js";
 import Keycap from "./Keycaps.js";
 import Keyboard from "./Keyboards.js";
-import Order from "./Order.js";
-// I left with the ./Order.js but it's telling me it should just be .order.js
+import Deskmat from "./Deskmats.js";
+import Accessory from "./Accessories.js";
+import Order from "./Orders.js";
+import UserVerification from "./UserVerification.js";
 
-export { SwitchModel, User, Keycap, Keyboard, Order };
+export { Switch, User, Keycap, Keyboard, Deskmat, Accessory, Order, UserVerification };

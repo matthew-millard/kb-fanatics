@@ -6,5 +6,18 @@ import Deskmats from "./Deskmats";
 import Accessories from "./Accessories";
 import Cart from "./Cart";
 import MyAccount from "./MyAccount";
+import Checkout from "./Checkout";
+import OrderConfirmation from "./OrderConfirmation";
 
-export { Home, Keyboards, Switches, Keycaps, Deskmats, Accessories, Cart, MyAccount };
+export {
+  Home,
+  Keyboards,
+  Switches,
+  Keycaps,
+  Deskmats,
+  Accessories,
+  Cart,
+  Checkout,
+  MyAccount,
+  OrderConfirmation,
+};

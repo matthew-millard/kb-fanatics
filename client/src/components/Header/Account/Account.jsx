@@ -7,10 +7,10 @@ import styles from "./Account.module.css";
 function Account() {
   return (
     <div className={styles.account}>
-    <Link to="/myaccount">
-      <FontAwesomeIcon icon={faUser} />
-    </Link>
-  </div>
+      <Link to="/myaccount">
+        <FontAwesomeIcon icon={faUser} />
+      </Link>
+    </div>
   );
 }
 

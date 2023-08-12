@@ -1,16 +1,25 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/pro-light-svg-icons";
-import { NavLinks, Account, Cart, SocialIcons, Logo } from "./Header";
+import { NavLinks, Cart, SocialIcons, Logo } from "./Header";
 import styles from "./MobileHeader.module.css";
 import SearchBar from "./SearchBar";
 
 function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const isLoggedIn = !!localStorage.getItem("authToken");
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
   return (
     <div className={styles.mobileHeader}>
       <div className={styles.logo}>
@@ -25,7 +34,16 @@ function MobileHeader() {
       </div>
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
         <div className={styles.userControls}>
-          <Account />
+          {isLoggedIn ? (
+            <>
+              <Link to="/dashboard">Dashboard</Link>
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
           <Cart />
         </div>
         <div className={styles.navLinks}>

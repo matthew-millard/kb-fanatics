@@ -1,8 +1,19 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+
 import App from "./App";
-import { Home, Keyboards, Switches, Keycaps, Deskmats, Accessories, Cart } from "./pages";
-import MyAccount from "./pages/MyAccount";
+import {
+  Home,
+  Keyboards,
+  Switches,
+  Keycaps,
+  Deskmats,
+  Accessories,
+  Cart,
+  Checkout,
+  MyAccount,
+  OrderConfirmation,
+} from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +26,8 @@ const router = createBrowserRouter([
       { path: "/deskmats", element: <Deskmats /> },
       { path: "/accessories", element: <Accessories /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/checkout", element: <Checkout /> },
+      { path: "/order-confirmation", element: <OrderConfirmation /> },
       { path: "/myaccount", element: <MyAccount /> },
     ],
   },
