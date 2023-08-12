@@ -16,7 +16,9 @@ function ShippingDetails({ user }) {
             id="name"
             type="text"
             placeholder="Enter your name"
-            defaultValue={`${user?.firstName} ${user?.lastName}`}
+            defaultValue={
+              user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : ""
+            }
           />
         </div>
         <div className={styles.inputGroup}>

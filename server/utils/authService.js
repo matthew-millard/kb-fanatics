@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { User } from "../models/index.js";
 
 export const generateToken = (user) => {
   try {
@@ -7,5 +8,16 @@ export const generateToken = (user) => {
     console.log("JWT Secret:", process.env.JWT_SECRET);
 
     throw new Error("Error generating token.");
+  }
+};
+
+export const verifyTokenFunction = async (token) => {
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+
+    return await User.findById(userId);
+  } catch (error) {
+    return null;
   }
 };

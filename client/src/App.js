@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
+import { useQuery } from "@apollo/client";
+import { Provider, useDispatch } from "react-redux";
+import { VERIFY_TOKEN_QUERY } from "./utils/queries";
 import cartReducer from "./utils/cartSlice";
-import authReducer from "./utils/authSlice";
+import authReducer, { setError, setUser } from "./utils/authSlice";
 import cartSaver from "./utils/cartSaver";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -22,7 +25,8 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,13 +39,23 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    // Check the token when the App component loads
-    const token = localStorage.getItem("token");
-    if (token) {
+  // Check the token when the App component loads
+  const token = localStorage.getItem("token");
+
+  useQuery(VERIFY_TOKEN_QUERY, {
+    variables: { token },
+    skip: !token,
+    onCompleted: (data) => {
+      dispatch(setUser(data.verifyToken));
       setIsAuthenticated(true);
-    }
-  }, []);
+    },
+    onError: (error) => {
+      localStorage.removeItem("token");
+      setIsAuthenticated(false);
+      dispatch(setError("Session expired. Please log in again."));
+      console.error("The error", error);
+    },
+  });
 
   // Listen for localStorage changes to keep authentication state consistent across tabs
   useEffect(() => {
@@ -59,22 +73,28 @@ function App() {
   }, []);
 
   return (
+    <div className={styles.pageContainer}>
+      <div className={styles.header}>
+        {isMobile ? <MobileHeader /> : <Header isAuthenticated={isAuthenticated} />}
+      </div>
+      <div className={styles.main}>
+        <Outlet />
+      </div>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
+    </div>
+  );
+}
+
+function AppWrapper() {
+  return (
     <Elements stripe={stripePromise}>
       <Provider store={store}>
-        <div className={styles.pageContainer}>
-          <div className={styles.header}>
-            {isMobile ? <MobileHeader /> : <Header isAuthenticated={isAuthenticated} />}
-          </div>
-          <div className={styles.main}>
-            <Outlet />
-          </div>
-          <div className={styles.footer}>
-            <Footer />
-          </div>
-        </div>
+        <App />
       </Provider>
     </Elements>
   );
 }
 
-export default App;
+export default AppWrapper;

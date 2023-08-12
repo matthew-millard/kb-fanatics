@@ -100,8 +100,53 @@ const typeDefs = gql`
     error: String
   }
 
+  type Order {
+    _id: ID!
+    orderTotal: Float!
+    orderItems: [OrderItem!]!
+  }
+
+  type OrderItem {
+    productId: ID!
+    quantity: Int!
+    price: Float!
+    brand: String!
+    model: String
+    image: String
+  }
+
+  input CreateOrderInput {
+    user: ID!
+    firstName: String
+    lastName: String
+    email: String
+    shippingAddress: ShippingAddressInput
+    total: Float
+    subTotal: Float
+    tax: Float
+    items: [OrderItemInput!]
+  }
+
+  input ShippingAddressInput {
+    street: String
+    city: String
+    province: String
+    postalCode: String
+    country: String
+  }
+
+  input OrderItemInput {
+    productId: ID!
+    quantity: Int!
+    price: Float!
+    brand: String!
+    model: String
+    image: String
+  }
+
   type Query {
     user(_id: ID!): User
+    verifyToken(token: String!): User!
     switches: [SwitchModel]
     keyboards: [Keyboard]
     keycaps: [Keycap]
@@ -113,6 +158,7 @@ const typeDefs = gql`
     signup(input: SignupInput!): User!
     login(email: String!, password: String!): AuthResponse
     createPaymentIntent(amount: Int!): PaymentIntentResponse!
+    createOrder(input: CreateOrderInput!): Order!
   }
 `;
 

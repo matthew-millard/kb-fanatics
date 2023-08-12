@@ -4,5 +4,6 @@ import Keycap from "./Keycaps.js";
 import Keyboard from "./Keyboards.js";
 import Deskmat from "./Deskmats.js";
 import Accessory from "./Accessories.js";
+import Order from "./Orders.js";
 
-export { Switch, User, Keycap, Keyboard, Deskmat, Accessory };
+export { Switch, User, Keycap, Keyboard, Deskmat, Accessory, Order };

@@ -23,7 +23,6 @@ function Checkout() {
     if (paymentHandlerRef.current) {
       await paymentHandlerRef.current();
     }
-    console.log("Order submitted");
   };
 
   // Fetch user from global state

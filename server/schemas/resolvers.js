@@ -1,7 +1,7 @@
-import { Switch, Keyboard, Keycap, Deskmat, Accessory, User } from "../models/index.js";
+import { Switch, Keyboard, Keycap, Deskmat, Accessory, User, Order } from "../models/index.js";
 import bcrypt from "bcrypt";
 import Stripe from "stripe";
-import { generateToken } from "../utils/authService.js";
+import { generateToken, verifyTokenFunction } from "../utils/authService.js";
 import dotenv from "dotenv";
 dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -57,6 +57,15 @@ const resolvers = {
       } catch (error) {
         throw new Error("Error fetching accessories");
       }
+    },
+    verifyToken: async (_, { token }) => {
+      const user = await verifyTokenFunction(token);
+
+      if (!user) {
+        throw new Error("Invalid or expired token.");
+      }
+
+      return user;
     },
   },
 
@@ -117,11 +126,40 @@ const resolvers = {
           amount, // Amount is in cents
           currency: "usd",
         });
-        console.log("paymentIntent", paymentIntent);
         return { success: true, clientSecret: paymentIntent.client_secret };
       } catch (error) {
         console.log("error", error);
         return { success: false, error: error.message };
+      }
+    },
+    createOrder: async (_, { input }) => {
+      try {
+        // Fetch user to associate with the order
+        const user = await User.findById(input.user);
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        // Prepare order data
+        const orderData = {
+          orderTotal: input.total,
+          orderItems: input.items,
+          user: input.user,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          email: input.email,
+          shippingAddress: input.shippingAddress,
+          orderSubTotal: input.subTotal,
+          orderTax: input.tax,
+        };
+
+        // Create a new order
+        const newOrder = new Order(orderData);
+        const savedOrder = await newOrder.save();
+
+        return savedOrder;
+      } catch (error) {
+        throw new Error(error.message || "Error creating the order");
       }
     },
   },

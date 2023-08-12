@@ -1,11 +1,11 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useMutation } from "@apollo/client";
 import { useSelector } from "react-redux";
-import { CREATE_PAYMENT_INTENT } from "../../utils/mutations";
+import { CREATE_PAYMENT_INTENT, CREATE_ORDER } from "../../utils/mutations";
 import { ClipLoader } from "react-spinners";
 import styles from "./Payment.module.css";
 
@@ -14,25 +14,27 @@ function Payment({ setPaymentHandler }) {
   const stripe = useStripe();
   const elements = useElements();
   const [createPaymentIntent, { loading, error }] = useMutation(CREATE_PAYMENT_INTENT);
+  const [createOrder, { loading: orderLoading, error: orderError }] = useMutation(CREATE_ORDER);
 
   // Retrieve the cart total
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
   const subTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   const tax = subTotal * 0.13;
   const shipping = subTotal > 100 ? 0 : 10;
   const total = subTotal + tax + shipping;
 
-  console.log(total);
+  // Fetch user from global state
+  const user = useSelector((state) => state.auth.user);
+
   const CARD_ELEMENT_OPTIONS = {
     style: {
       base: {
         color: "#e6f1ff",
-        fontSize: "18px",
+        fontSize: "20px",
         "::placeholder": {
-          color: "#8892b0",
+          color: "#e6f1ff",
         },
-        backgroundColor: "#010215",
+        backgroundColor: "#00010a",
       },
       invalid: {
         color: "#da0016",
@@ -63,7 +65,6 @@ function Payment({ setPaymentHandler }) {
       if (paymentMethodResponse.error) {
         throw new Error(paymentMethodResponse.error.message);
       }
-      console.log("paymentMethodResponse:", paymentMethodResponse);
 
       const confirmCardPayment = await stripe.confirmCardPayment(
         paymentIntentResponse.createPaymentIntent.clientSecret,
@@ -80,9 +81,47 @@ function Payment({ setPaymentHandler }) {
         throw new Error("Payment could not be processed. Please try again.");
       }
 
-      // Payment was successful. Maybe redirect user or show success message.
-      console.log("Payment successful");
-      navigate("/success"); // Redirect to the success page
+      // Save order to user account
+      const orderData = {
+        user: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        shippingAddress: {
+          street: user.address,
+          city: user.city,
+          province: user.stateProvince,
+          postalCode: user.postalCode,
+          country: user.country,
+        },
+        total,
+        subTotal,
+        tax,
+        items: cart.map((item) => ({
+          productId: item._id,
+          quantity: item.quantity,
+          price: item.price,
+          brand: item.brand,
+          model: item.model,
+          image: item.imageURL,
+        })),
+      };
+
+      try {
+        const { data: orderResponse } = await createOrder({
+          variables: {
+            ...orderData,
+          },
+        });
+
+        if (!orderResponse.createOrder._id) {
+          throw new Error("Failed to create order.");
+        }
+
+        navigate("/order-confirmation"); // Redirect to the order confirmation page
+      } catch (orderCreationError) {
+        console.error("Error during order creation:", orderCreationError.message);
+      }
     } catch (stripeError) {
       // Display stripeError.message to the user
       console.error(stripeError.message);
@@ -105,7 +144,15 @@ function Payment({ setPaymentHandler }) {
       <form>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
         {loading && <ClipLoader color="#e6f1ff" />}
-        {error && <div>Error: {error.message}</div>}
+        {error && <div className={styles.error}>Error: {error.message}</div>}
+
+        {/* Display order creation loading state */}
+        {orderLoading && <ClipLoader color="#e6f1ff" description="Creating order..." />}
+
+        {/* Display order creation error */}
+        {orderError && (
+          <div className={styles.error}>Order Creation Error: {orderError.message}</div>
+        )}
       </form>
     </div>
   );
