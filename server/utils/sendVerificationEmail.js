@@ -25,7 +25,7 @@ export const sendVerificationEmail = async ({email }) => {
     from: process.env.TESTMAIL,
     to: email,
     subject: "Verify your Email for KB-Fanatics",
-    html: `<p> Verify your email address to complete your Account <p><p> This link expires in 6 hours</p><p><a href=${currentUrl + "user/verify/"+ uniqueString}</a> here</p>`,
+    html: `<p> Verify your email address to complete your Account <p><p> This link expires in 1 hours</p><p><a href=${currentUrl + "user/verify/"+ uniqueString}</a> here</p>`,
   };
 
 
