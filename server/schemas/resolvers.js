@@ -83,7 +83,15 @@ const resolvers = {
 
         // Replace plain password with hashed one
         input.password = hashedPassword;
-        sendVerificationEmail(input.email);
+        const emailResponse = sendVerificationEmail(input.email);
+        console.log (emailResponse);
+        if (await emailResponse.accepted.length > 0){
+          
+        }
+        else {
+          console.log('There was no repsonse from this email')
+        }
+        
         const newUser = new User(input);
         return await newUser.save();
       } catch (error) {
