@@ -27,7 +27,22 @@ export const LOGIN_MUTATION = gql`
         email
         firstName
         lastName
+        address
+        city
+        stateProvince
+        country
+        postalCode
       }
+    }
+  }
+`;
+
+export const CREATE_PAYMENT_INTENT = gql`
+  mutation CreatePaymentIntent($amount: Int!) {
+    createPaymentIntent(amount: $amount) {
+      success
+      clientSecret
+      error
     }
   }
 `;

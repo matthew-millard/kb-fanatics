@@ -1,0 +1,36 @@
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  align-items: start;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr;
+  align-items: start;
+  gap: 1rem;
+  margin: 2rem 0;
+  font-size: 1rem;
+}
+
+.itemImage {
+  width: 50px;
+}
+
+.itemImage img {
+  border-radius: 50%;
+}
+
+.total {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .item {
+    font-size: 1.6rem;
+  }
+}

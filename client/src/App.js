@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import cartReducer from "./utils/cartSlice";
 import authReducer from "./utils/authSlice";
 import cartSaver from "./utils/cartSaver";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { Footer, Header, MobileHeader } from "./components";
 import styles from "./App.module.css";
 
@@ -15,6 +17,8 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cartSaver),
 });
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
@@ -55,19 +59,21 @@ function App() {
   }, []);
 
   return (
-    <Provider store={store}>
-      <div className={styles.pageContainer}>
-        <div className={styles.header}>
-          {isMobile ? <MobileHeader /> : <Header isAuthenticated={isAuthenticated} />}
+    <Elements stripe={stripePromise}>
+      <Provider store={store}>
+        <div className={styles.pageContainer}>
+          <div className={styles.header}>
+            {isMobile ? <MobileHeader /> : <Header isAuthenticated={isAuthenticated} />}
+          </div>
+          <div className={styles.main}>
+            <Outlet />
+          </div>
+          <div className={styles.footer}>
+            <Footer />
+          </div>
         </div>
-        <div className={styles.main}>
-          <Outlet />
-        </div>
-        <div className={styles.footer}>
-          <Footer />
-        </div>
-      </div>
-    </Provider>
+      </Provider>
+    </Elements>
   );
 }
 

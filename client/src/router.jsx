@@ -10,7 +10,9 @@ import {
   Deskmats,
   Accessories,
   Cart,
+  Checkout,
   MyAccount,
+  OrderConfirmation,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
       { path: "/deskmats", element: <Deskmats /> },
       { path: "/accessories", element: <Accessories /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/checkout", element: <Checkout /> },
+      { path: "/success", element: <OrderConfirmation /> },
       { path: "/myaccount", element: <MyAccount /> },
     ],
   },

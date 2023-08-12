@@ -145,6 +145,12 @@
 .total span {
   font-size: 2rem;
 }
+
+/* .paymentComponent {
+  border: 2px solid var(--vlight-navy);
+  border-radius: 5px;
+  padding: 1rem;
+} */
 /* Media Queries */
 @media (min-width: 768px) {
   .header {

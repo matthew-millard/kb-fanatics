@@ -1,6 +1,14 @@
 import { Switch, Keyboard, Keycap, Deskmat, Accessory, User } from "../models/index.js";
 import bcrypt from "bcrypt";
+import Stripe from "stripe";
 import { generateToken } from "../utils/authService.js";
+import dotenv from "dotenv";
+dotenv.config();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  console.error("STRIPE_SECRET_KEY is not set!");
+}
 
 const resolvers = {
   Query: {
@@ -100,6 +108,20 @@ const resolvers = {
         };
       } catch (error) {
         throw new Error(error.message);
+      }
+    },
+    createPaymentIntent: async (_, { amount }) => {
+      console.log("amount", amount);
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount, // Amount is in cents
+          currency: "usd",
+        });
+        console.log("paymentIntent", paymentIntent);
+        return { success: true, clientSecret: paymentIntent.client_secret };
+      } catch (error) {
+        console.log("error", error);
+        return { success: false, error: error.message };
       }
     },
   },

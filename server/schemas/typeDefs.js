@@ -94,6 +94,12 @@ const typeDefs = gql`
     imageURL: String
   }
 
+  type PaymentIntentResponse {
+    success: Boolean!
+    clientSecret: String
+    error: String
+  }
+
   type Query {
     user(_id: ID!): User
     switches: [SwitchModel]
@@ -106,6 +112,7 @@ const typeDefs = gql`
   type Mutation {
     signup(input: SignupInput!): User!
     login(email: String!, password: String!): AuthResponse
+    createPaymentIntent(amount: Int!): PaymentIntentResponse!
   }
 `;
 
