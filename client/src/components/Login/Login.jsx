@@ -27,13 +27,11 @@ function Login({ onSuccess }) {
     e.preventDefault();
 
     try {
-      console.log(formData);
       const response = await login({
         variables: { email: formData.email, password: formData.password },
       });
 
       const userData = response.data.login.user; // Extract user data
-
       // Store token and user data in local storage
       localStorage.setItem("token", response.data.login.token);
       localStorage.setItem("user", JSON.stringify(userData)); // Store user data as a string

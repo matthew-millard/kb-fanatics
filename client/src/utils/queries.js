@@ -93,3 +93,12 @@ export const USER_QUERY = gql`
     }
   }
 `;
+
+export const VERIFY_TOKEN_QUERY = gql`
+  query VerifyToken($token: String!) {
+    verifyToken(token: $token) {
+      _id
+      email
+    }
+  }
+`;

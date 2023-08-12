@@ -1,6 +1,14 @@
-import { Switch, Keyboard, Keycap, Deskmat, Accessory, User } from "../models/index.js";
+import { Switch, Keyboard, Keycap, Deskmat, Accessory, User, Order } from "../models/index.js";
 import bcrypt from "bcrypt";
-import { generateToken } from "../utils/authService.js";
+import Stripe from "stripe";
+import { generateToken, verifyTokenFunction } from "../utils/authService.js";
+import dotenv from "dotenv";
+dotenv.config();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  console.error("STRIPE_SECRET_KEY is not set!");
+}
 
 const resolvers = {
   Query: {
@@ -49,6 +57,15 @@ const resolvers = {
       } catch (error) {
         throw new Error("Error fetching accessories");
       }
+    },
+    verifyToken: async (_, { token }) => {
+      const user = await verifyTokenFunction(token);
+
+      if (!user) {
+        throw new Error("Invalid or expired token.");
+      }
+
+      return user;
     },
   },
 
@@ -100,6 +117,49 @@ const resolvers = {
         };
       } catch (error) {
         throw new Error(error.message);
+      }
+    },
+    createPaymentIntent: async (_, { amount }) => {
+      console.log("amount", amount);
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount, // Amount is in cents
+          currency: "usd",
+        });
+        return { success: true, clientSecret: paymentIntent.client_secret };
+      } catch (error) {
+        console.log("error", error);
+        return { success: false, error: error.message };
+      }
+    },
+    createOrder: async (_, { input }) => {
+      try {
+        // Fetch user to associate with the order
+        const user = await User.findById(input.user);
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        // Prepare order data
+        const orderData = {
+          orderTotal: input.total,
+          orderItems: input.items,
+          user: input.user,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          email: input.email,
+          shippingAddress: input.shippingAddress,
+          orderSubTotal: input.subTotal,
+          orderTax: input.tax,
+        };
+
+        // Create a new order
+        const newOrder = new Order(orderData);
+        const savedOrder = await newOrder.save();
+
+        return savedOrder;
+      } catch (error) {
+        throw new Error(error.message || "Error creating the order");
       }
     },
   },

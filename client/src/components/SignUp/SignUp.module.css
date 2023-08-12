@@ -54,6 +54,10 @@
   gap: 1rem;
 }
 
+.error {
+  color: var(--errorRed);
+}
+
 @media (min-width: 769px) {
   .container {
     margin-top: 6rem;
