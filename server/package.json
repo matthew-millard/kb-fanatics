@@ -21,7 +21,9 @@
     "graphql": "^16.7.1",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.1",
+    "nodemailer": "^6.9.4",
     "stripe": "^12.18.0"
+
   },
   "devDependencies": {
     "eslint": "^8.46.0",

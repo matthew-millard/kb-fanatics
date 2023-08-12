@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import Stripe from "stripe";
 import { generateToken, verifyTokenFunction } from "../utils/authService.js";
 import dotenv from "dotenv";
+import { sendVerificationEmail } from "../utils/sendVerificationEmail.js";
 dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -82,7 +83,7 @@ const resolvers = {
 
         // Replace plain password with hashed one
         input.password = hashedPassword;
-
+        sendVerificationEmail(input.email);
         const newUser = new User(input);
         return await newUser.save();
       } catch (error) {

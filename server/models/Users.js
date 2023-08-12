@@ -63,8 +63,44 @@ const userSchema = new Schema({
     // required: true,
     trim: true,
   },
+  verified: {
+    type: Boolean,
+    trim: true,
+    default: false,
+  },
+  addressValidation: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const User = model("User", userSchema);
+
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password") || this.isNew) {
+    try {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(this.password, salt);
+      this.password = hashedPassword;
+    } catch (error) {
+      return next(error);
+    }
+  }
+  next();
+});
+
+userSchema.pre("save", async function (next) {
+  if (this.isModified("creditCard") || this.isNew) {
+    try {
+      const partialCreditCard = this.creditCard.substring(0, 12);
+      const hashedCreditCard = await bcrypt.hash(partialCreditCard, 10);
+      const asterisks = "*".repeat(12);
+      this.creditCard = `${asterisks}${this.creditCard.substring(12)}`;
+    } catch (error) {
+      return next(error);
+    }
+  }
+  next();
+});
 
 export default User;
