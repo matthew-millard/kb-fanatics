@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { setUser, setError, clearUser, showLogin } from "../../utils/authSlice";
 import SubmitButton from "../SubmitButton";
 import styles from "./SignUp.module.css";
-import { ClipLoader } from "react-spinners";
 
 function SignUp({ onSuccess }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -172,8 +171,7 @@ function SignUp({ onSuccess }) {
         </div>
 
         <div className={styles.controlsGroup}>
-          <SubmitButton text="Sign Up" />
-          {isLoading && <ClipLoader color="#123ABC" loading={isLoading} size={50} />}
+          <SubmitButton text="Sign Up" isLoading={isLoading} />
           {error && <p className={styles.error}>Error: {error.message}</p>}
           <button className={styles.loginLink} type="button" onClick={() => dispatch(showLogin())}>
             Already have an account? Log in here.

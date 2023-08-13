@@ -1,4 +1,13 @@
-import { Switch, Keyboard, Keycap, Deskmat, Accessory, User, Order } from "../models/index.js";
+import {
+  Switch,
+  Keyboard,
+  Keycap,
+  Deskmat,
+  Accessory,
+  User,
+  Order,
+  UserVerification,
+} from "../models/index.js";
 import bcrypt from "bcrypt";
 import Stripe from "stripe";
 import { generateToken, verifyTokenFunction } from "../utils/authService.js";
@@ -83,20 +92,73 @@ const resolvers = {
 
         // Replace plain password with hashed one
         input.password = hashedPassword;
-        const emailResponse = sendVerificationEmail(input.email);
-        console.log (emailResponse);
-        if (await emailResponse.accepted.length > 0){
-          
+
+        const emailResult = await sendVerificationEmail({ email: input.email });
+        if (emailResult.success && emailResult.uniqueString) {
+          const now = new Date();
+          const expiryTime = new Date(now.getTime() + 1 * 60 * 60 * 1000); // 1 hour from now
+
+          const userVerificationEntry = new UserVerification({
+            email: input.email,
+            uniqueString: emailResult.uniqueString,
+            createdAt: now,
+            expiresAt: expiryTime,
+          });
+
+          await userVerificationEntry.save();
+        } else {
+          console.log(
+            "There was no response from this email or verification token was not generated",
+          );
         }
-        else {
-          console.log('There was no repsonse from this email')
-        }
-        
+
         const newUser = new User(input);
         return await newUser.save();
       } catch (error) {
         throw new Error(error.message || "Error signing up the user");
       }
+    },
+    verifyEmail: async (_, { uniqueString }) => {
+      //
+      const verificationRecord = await UserVerification.findOne({ uniqueString });
+      console.log(verificationRecord);
+
+      // Check if verification record exists
+      if (!verificationRecord) {
+        throw new Error("Invalid or expired verification link");
+      }
+
+      // Check if verification link has expired
+      const now = new Date();
+      if (verificationRecord.expiresAt < now) {
+        throw new Error("Verification link has expired. Please request a new one.");
+      }
+
+      // Update user record
+      const user = await User.findOne({ email: verificationRecord.email });
+      user.verified = true;
+      await user.save();
+
+      // Delete verification record
+      await UserVerification.deleteOne({ uniqueString });
+
+      // Return success message
+      return { success: true, message: "Email verified successfully!" };
+    },
+    resendVerificationEmail: async (_, { email }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      if (user.verified) {
+        throw new Error("Email is already verified");
+      }
+
+      await sendVerificationEmail({ email });
+
+      return { success: true, message: "Verification email sent!" };
     },
     login: async (_, { email, password }) => {
       try {
@@ -110,6 +172,11 @@ const resolvers = {
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) {
           throw new Error("Invalid password");
+        }
+
+        // Check if user has verified their email address
+        if (!user.verified) {
+          throw new Error("Please verify your email address before logging in.");
         }
 
         // Generate JWT token
