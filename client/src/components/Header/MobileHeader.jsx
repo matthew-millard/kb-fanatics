@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/pro-light-svg-icons";
 import { NavLinks, Cart, SocialIcons, Logo } from "./Header";
@@ -10,6 +10,11 @@ function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const isLoggedIn = !!localStorage.getItem("authToken");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
