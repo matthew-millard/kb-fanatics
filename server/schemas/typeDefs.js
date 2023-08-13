@@ -12,6 +12,7 @@ const typeDefs = gql`
     country: String
     postalCode: String
     phoneNumber: String
+    verified: Boolean
   }
 
   input SignupInput {
@@ -26,6 +27,11 @@ const typeDefs = gql`
     country: String
     postalCode: String
     phoneNumber: String
+  }
+
+  type VerificationResponse {
+    success: Boolean!
+    message: String
   }
 
   input LoginInput {
@@ -159,6 +165,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): AuthResponse
     createPaymentIntent(amount: Int!): PaymentIntentResponse!
     createOrder(input: CreateOrderInput!): Order!
+    verifyEmail(uniqueString: String!): VerificationResponse!
+    resendVerificationEmail(email: String!): VerificationResponse!
   }
 `;
 

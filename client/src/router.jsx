@@ -13,6 +13,7 @@ import {
   Checkout,
   MyAccount,
   OrderConfirmation,
+  EmailVerification,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: "/checkout", element: <Checkout /> },
       { path: "/order-confirmation", element: <OrderConfirmation /> },
       { path: "/myaccount", element: <MyAccount /> },
+      { path: "/user/verify/:uniqueString", element: <EmailVerification /> },
     ],
   },
 ]);

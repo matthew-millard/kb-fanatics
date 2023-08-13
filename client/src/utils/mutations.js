@@ -85,3 +85,12 @@ export const CREATE_ORDER = gql`
     }
   }
 `;
+
+export const VERIFY_EMAIL = gql`
+  mutation VerifyEmail($uniqueString: String!) {
+    verifyEmail(uniqueString: $uniqueString) {
+      success
+      message
+    }
+  }
+`;

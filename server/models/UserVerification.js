@@ -1,13 +1,24 @@
 import { Schema, model } from "mongoose";
 
-const UserVerificationSchema = new Schema({
-    email: String, //this refers to our user ID in our records
-    uniqueString: String,
-    createdAt: Date,
-    expiresAt: Date,
-
-
-});
+const UserVerificationSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    uniqueString: {
+      type: String,
+      required: true,
+    },
+    expiresAt: {
+      type: Date,
+      required: true,
+    },
+  },
+  {
+    timestamps: true, // createdAt, updatedAt
+  },
+);
 
 const UserVerification = model("UserVerification", UserVerificationSchema);
 
