@@ -7,8 +7,10 @@ import { useDispatch } from "react-redux";
 import { setUser, setError, clearUser, showLogin } from "../../utils/authSlice";
 import SubmitButton from "../SubmitButton";
 import styles from "./SignUp.module.css";
+import { ClipLoader } from "react-spinners";
 
 function SignUp({ onSuccess }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [signup, { error }] = useMutation(SIGNUP_MUTATION);
 
   const [formData, setFormData] = useState({
@@ -35,6 +37,7 @@ function SignUp({ onSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await signup({ variables: { input: formData } });
@@ -48,6 +51,8 @@ function SignUp({ onSuccess }) {
     } catch (err) {
       console.error("Error signing up:", err);
       dispatch(setError(err.message));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -168,6 +173,7 @@ function SignUp({ onSuccess }) {
 
         <div className={styles.controlsGroup}>
           <SubmitButton text="Sign Up" />
+          {isLoading && <ClipLoader color="#123ABC" loading={isLoading} size={50} />}
           {error && <p className={styles.error}>Error: {error.message}</p>}
           <button className={styles.loginLink} type="button" onClick={() => dispatch(showLogin())}>
             Already have an account? Log in here.
