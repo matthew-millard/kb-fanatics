@@ -13,7 +13,10 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build",
     "uploadKeyboardImages": "cd server && node scripts/uploadKeyboardImagesToS3.js",
-    "uploadSwitchImages": "cd server && node scripts/uploadSwitchImagesToS3.js"
+    "uploadSwitchImages": "cd server && node scripts/uploadSwitchImagesToS3.js",
+    "uploadKeycapImages": "cd server && node scripts/uploadKeycapImagesToS3.js",
+    "uploadDeskmatImages": "cd server && node scripts/uploadDeskmatImagesToS3.js",
+    "uploadAccessoryImages": "cd server && node scripts/uploadAccessoryImagesToS3.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,7 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.1",
-    "react-hook-form": "^7.45.2"
+    "react-hook-form": "^7.45.2",
+    "react-router-dom": "^6.14.2"
   }
 }

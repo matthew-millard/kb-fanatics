@@ -1,18 +1,55 @@
-import SwitchModels from "../models/Switches.js";
-import User from "../models/Users.js";
-import Keycap from "../models/Keycaps.js";
-import Keyboard from "../models/Keyboards.js";
-import Order from "../models/Order.js";
-import Cart from "../models/Cart.js";
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken';
+import {
+  Switch,
+  Keyboard,
+  Keycap,
+  Deskmat,
+  Accessory,
+  User,
+  Order,
+  UserVerification,
+} from "../models/index.js";
+import bcrypt from "bcrypt";
+import Stripe from "stripe";
+import { generateToken, verifyTokenFunction } from "../utils/authService.js";
+import dotenv from "dotenv";
+import { sendVerificationEmail } from "../utils/sendVerificationEmail.js";
+dotenv.config();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+if (!process.env.STRIPE_SECRET_KEY) {
+  console.error("STRIPE_SECRET_KEY is not set!");
+}
 
 const resolvers = {
   Query: {
+    user: async (_, { _id }) => {
+      try {
+        const foundUser = await User.findById(_id);
+        if (!foundUser) {
+          throw new Error("User not found");
+        }
+        return foundUser;
+      } catch (error) {
+        throw new Error("Error fetching user");
+      }
+    },
+    getUserOrders: async (_, { _id }) => {
+      try {
+        const foundOrders = await Order.find({ user: _id });
+        if (!foundOrders.length) {
+          return [];
+        }
+        return foundOrders;
+      } catch (error) {
+        throw new Error("Error fetching orders");
+      }
+    },
+    getSingleOrder: async (_, { _id }) => {
+      return await Order.findById(_id);
+    },
     switches: async () => {
       try {
-        return await SwitchModels.find({});
+        return await Switch.find({});
       } catch (error) {
         throw new Error("Error fetching switches");
       }
@@ -31,64 +68,190 @@ const resolvers = {
         throw new Error("Error fetching keycaps");
       }
     },
-    users: async () => {
+    deskmats: async () => {
       try {
-        return await User.find({});
+        return await Deskmat.find({});
       } catch (error) {
-        throw new Error("Error fetching users");
+        throw new Error("Error fetching deskmats");
       }
     },
-    orders: async () => {
+    accessories: async () => {
       try {
-        return await Order.find({});
+        return await Accessory.find({});
       } catch (error) {
-        throw new Error("Error fetching orders");
+        throw new Error("Error fetching accessories");
       }
     },
-    cart: async () => {
-      try {
-        return await Cart.find({});
-      } catch (error) {
-        throw new Error("Error fetching cart");
+    verifyToken: async (_, { token }) => {
+      const user = await verifyTokenFunction(token);
+
+      if (!user) {
+        throw new Error("Invalid or expired token.");
       }
+
+      return user;
     },
   },
+
   Mutation: {
-    signup: async (_, { fName, LName, eMail, password, address1, city, stateProvince, country }) => {
+    signup: async (_, { input }) => {
       try {
-        // First, check if a user with this email already exists
-        const existingUser = await User.findOne({ eMail });
+        const existingUser = await User.findOne({ email: input.email });
         if (existingUser) {
-          throw new Error('User with this email already exists');
+          throw new Error("Email is already in use");
         }
-    
-        // Hash the password before saving the user to the database
-        const hashedPassword = await bcrypt.hash(password, 10);
-    
-        // Create a new user
-        const user = new User({ fName, LName, eMail, password: hashedPassword, address1, city, stateProvince, country });
-        const result = await user.save();
-    
-        // Create a JWT token
-        const token = jwt.sign({ user_ID: result._id, eMail: result.eMail }, 'JWT_SECRET_KEY', { expiresIn: '1d' });
+        // Salt & hash the password
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(input.password, saltRounds);
 
+        // Replace plain password with hashed one
+        input.password = hashedPassword;
 
-    
+        const emailResult = await sendVerificationEmail({ email: input.email });
+        if (emailResult.success && emailResult.uniqueString) {
+          const now = new Date();
+          const expiryTime = new Date(now.getTime() + 1 * 60 * 60 * 1000); // 1 hour from now
+
+          const userVerificationEntry = new UserVerification({
+            email: input.email,
+            uniqueString: emailResult.uniqueString,
+            createdAt: now,
+            expiresAt: expiryTime,
+          });
+
+          await userVerificationEntry.save();
+        } else {
+          console.log(
+            "There was no response from this email or verification token was not generated",
+          );
+        }
+
+        const newUser = new User(input);
+        return await newUser.save();
+      } catch (error) {
+        throw new Error(error.message || "Error signing up the user");
+      }
+    },
+    verifyEmail: async (_, { uniqueString }) => {
+      //
+      const verificationRecord = await UserVerification.findOne({ uniqueString });
+      console.log(verificationRecord);
+
+      // Check if verification record exists
+      if (!verificationRecord) {
+        throw new Error("Invalid or expired verification link");
+      }
+
+      // Check if verification link has expired
+      const now = new Date();
+      if (verificationRecord.expiresAt < now) {
+        throw new Error("Verification link has expired. Please request a new one.");
+      }
+
+      // Update user record
+      const user = await User.findOne({ email: verificationRecord.email });
+      user.verified = true;
+      await user.save();
+
+      // Delete verification record
+      await UserVerification.deleteOne({ uniqueString });
+
+      // Return success message
+      return { success: true, message: "Email verified successfully!" };
+    },
+    resendVerificationEmail: async (_, { email }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      if (user.verified) {
+        throw new Error("Email is already verified");
+      }
+
+      await sendVerificationEmail({ email });
+
+      return { success: true, message: "Verification email sent!" };
+    },
+    login: async (_, { email, password }) => {
+      try {
+        // Check if user exists
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        // Check if password is correct
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) {
+          throw new Error("Invalid password");
+        }
+
+        // Check if user has verified their email address
+        if (!user.verified) {
+          throw new Error("Please verify your email address before logging in.");
+        }
+
+        // Generate JWT token
+        const tokenData = { id: user._id };
+        const token = generateToken(tokenData);
+
+        // Remove password from user object
+        user.password = undefined;
+
+        // Return token and user data
         return {
           token,
-          user: result,
+          user,
         };
       } catch (error) {
-        if (error.name === 'ValidationError') {
-          console.error(error.message);
-          console.error(error.errors);
-        }
-        console.error(error);  // Log the error here
-        throw error;  // Re-throw the error to be caught by Apollo Server
+        throw new Error(error.message);
       }
     },
-    
+    createPaymentIntent: async (_, { amount }) => {
+      console.log("amount", amount);
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount, // Amount is in cents
+          currency: "usd",
+        });
+        return { success: true, clientSecret: paymentIntent.client_secret };
+      } catch (error) {
+        console.log("error", error);
+        return { success: false, error: error.message };
+      }
+    },
+    createOrder: async (_, { input }) => {
+      try {
+        // Fetch user to associate with the order
+        const user = await User.findById(input.user);
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        // Prepare order data
+        const orderData = {
+          orderTotal: input.total,
+          orderItems: input.items,
+          user: input.user,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          email: input.email,
+          shippingAddress: input.shippingAddress,
+          orderSubTotal: input.subTotal,
+          orderTax: input.tax,
+        };
+
+        // Create a new order
+        const newOrder = new Order(orderData);
+        const savedOrder = await newOrder.save();
+
+        return savedOrder;
+      } catch (error) {
+        throw new Error(error.message || "Error creating the order");
+      }
+    },
   },
 };
-
 export default resolvers;

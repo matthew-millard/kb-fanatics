@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashXmark, faPlus, faMinus } from "@fortawesome/pro-light-svg-icons";
 import { addToCart, removeFromCart, updateQuantity } from "../../utils/cartSlice";
+import SubmitButton from "../../components/SubmitButton";
 import styles from "./Cart.module.css";
 
 function Cart() {
+  const navigate = useNavigate();
+
+  const goToCheckout = () => {
+    navigate("/checkout");
+  };
+
   const cart = useSelector((state) => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
@@ -106,6 +114,7 @@ function Cart() {
               Total: <span>${total.toFixed(2)}</span>
             </p>
           </div>
+          <SubmitButton text="Checkout" onClick={goToCheckout} />
         </div>
       )}
     </div>

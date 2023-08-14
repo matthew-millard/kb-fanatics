@@ -33,12 +33,8 @@ const switchSchema = new Schema({
     type: String,
     trim: true,
   },
-  type: {
-    type: String,
-    trim: true,
-  }
 });
 
-const SwitchModel = model("Switches", switchSchema);
+const Switch = model("Switches", switchSchema);
 
-export default SwitchModel;
+export default Switch;

@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  min-height: calc(100vh - 100px);
   max-width: 900px;
   margin: 2rem auto;
   color: var(--white);
@@ -145,8 +146,18 @@
 .total span {
   font-size: 2rem;
 }
+
+/* .paymentComponent {
+  border: 2px solid var(--vlight-navy);
+  border-radius: 5px;
+  padding: 1rem;
+} */
 /* Media Queries */
 @media (min-width: 768px) {
+  .container {
+    margin-top: 6rem;
+    margin-bottom: 10rem;
+  }
   .header {
     margin-bottom: 2rem;
     font-size: 3.2rem;

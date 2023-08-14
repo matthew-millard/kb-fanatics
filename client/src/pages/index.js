@@ -11,6 +11,11 @@ import ContactUs from "./ContactUs";
 import FAQ from "./FAQ";
 import RefundPolicy from "./RefundPolicy";
 import TermsOfService from "./TermsOfService";
+import Checkout from "./Checkout";
+import OrderConfirmation from "./OrderConfirmation";
+import EmailVerification from "./EmailVerification";
+import OrderDetails from "./OrderDetails";
+
 
 export {
   Home,
@@ -20,10 +25,14 @@ export {
   Deskmats,
   Accessories,
   Cart,
-  MyAccount,
   AboutUs,
   ContactUs,
   FAQ,
   RefundPolicy,
   TermsOfService,
+  Checkout,
+  MyAccount,
+  OrderConfirmation,
+  EmailVerification,
+  OrderDetails,
 };
