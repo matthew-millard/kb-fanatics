@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, logOut, showLogin, showSignUp, selectAuth } from "../../utils/authSlice";
+import { logIn, logOut, showSignUp, selectAuth } from "../../utils/authSlice";
 import SignUp from "../../components/SignUp";
 import Login from "../../components/Login";
 import Dashboard from "../../components/Dashboard";
@@ -21,23 +21,9 @@ function MyAccount() {
 
   return (
     <div className={styles.container}>
-      {authState.status === "none" && (
-        <div className={styles.content}>
-          <div className={styles.heading}>
-            <h2>Please sign up or login to your account</h2>
-          </div>
-          <div className={styles.buttons}>
-            <button className={styles.button} type="button" onClick={() => dispatch(showLogin())}>
-              Login
-            </button>
-            <button className={styles.button} type="button" onClick={() => dispatch(showSignUp())}>
-              Sign Up
-            </button>
-          </div>
-        </div>
-      )}
+      {authState.status === "none" && <Login onSuccess={() => dispatch(logIn())} />}
       {authState.status === "loggingIn" && <Login onSuccess={() => dispatch(logIn())} />}
-      {authState.status === "signingUp" && <SignUp onSuccess={() => dispatch(showLogin())} />}
+      {authState.status === "signingUp" && <SignUp onSuccess={() => dispatch(logIn())} />}
       {authState.isAuthenticated && <Dashboard user={authState.user} onLogOut={handleLogout} />}
     </div>
   );
