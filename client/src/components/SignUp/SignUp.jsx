@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 import { SIGNUP_MUTATION } from "../../utils/mutations";
 import { useDispatch } from "react-redux";
 import { setUser, setError, clearUser, showLogin } from "../../utils/authSlice";
-import SubmitButton from "../SubmitButton";
+// import SubmitButton from "../SubmitButton";
 import styles from "./SignUp.module.css";
 
 function SignUp({ onSuccess }) {
