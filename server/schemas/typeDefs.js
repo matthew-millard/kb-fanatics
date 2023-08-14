@@ -150,8 +150,31 @@ const typeDefs = gql`
     image: String
   }
 
+  type ShippingAddress {
+    street: String
+    city: String
+    province: String
+    postalCode: String
+    country: String
+  }
+
+  type OrderDetail {
+    user: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    shippingAddress: ShippingAddress!
+    orderItems: [OrderItem!]!
+    orderTotal: Float!
+    orderSubTotal: Float!
+    orderTax: Float!
+    createdAt: String!
+    updatedAt: String!
+  }
+
   type Query {
     user(_id: ID!): User
+    getUserOrders(_id: ID!): [OrderDetail!]!
     verifyToken(token: String!): User!
     switches: [SwitchModel]
     keyboards: [Keyboard]

@@ -2,8 +2,8 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { USER_QUERY } from "../../utils/queries";
+import OrderHistory from "../OrderHistory";
 import styles from "./Dashboard.module.css";
-
 import dashboardImage from "../../images/Keyboard_warrior_icon.png";
 import dashboardImage2 from "../../images/Keyboard_warrior_icon2.png"; 
 
@@ -22,6 +22,7 @@ function Dashboard({ onLogOut }) {
   });
 
   if (loading) return <p>Loading...</p>;
+
   if (error) return <p>Error: {error.message}</p>;
 
   const user = userData?.user;

@@ -102,3 +102,23 @@ export const VERIFY_TOKEN_QUERY = gql`
     }
   }
 `;
+
+export const USER_ORDERS_QUERY = gql`
+  query GetUserOrders($_id: ID!) {
+    getUserOrders(_id: $_id) {
+      orderItems {
+        productId
+        quantity
+        price
+        brand
+        model
+        image
+      }
+      orderTotal
+      orderSubTotal
+      orderTax
+      createdAt
+      updatedAt
+    }
+  }
+`;

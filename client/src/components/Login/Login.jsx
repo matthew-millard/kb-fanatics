@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_MUTATION } from "../../utils/mutations";

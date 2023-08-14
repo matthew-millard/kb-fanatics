@@ -33,6 +33,17 @@ const resolvers = {
         throw new Error("Error fetching user");
       }
     },
+    getUserOrders: async (_, { _id }) => {
+      try {
+        const foundOrders = await Order.find({ user: _id });
+        if (!foundOrders.length) {
+          return [];
+        }
+        return foundOrders;
+      } catch (error) {
+        throw new Error("Error fetching orders");
+      }
+    },
     switches: async () => {
       try {
         return await Switch.find({});
