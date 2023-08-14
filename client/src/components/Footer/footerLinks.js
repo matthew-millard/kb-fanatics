@@ -21,7 +21,7 @@ const links = [
   },
   {
     title: "Terms of Service",
-    url: "/terms",
+    url: "/terms-of-service",
     id: "terms",
   },
 ];

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { faGreaterThan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import links from "./footerLinks";
@@ -40,9 +42,7 @@ export default function Footer() {
         <ul>
           {links.map((linkObj) => (
             <li key={linkObj.id}>
-              <a href={linkObj.url} target="_blank" rel="noopener noreferrer">
-                {linkObj.title}
-              </a>
+              <Link to={linkObj.url}>{linkObj.title}</Link>
             </li>
           ))}
         </ul>
