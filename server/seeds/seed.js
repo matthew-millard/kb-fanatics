@@ -10,6 +10,7 @@ import orderData from "./orderData.json" assert { type: "json" };
 import userVerification from "./userVerificationData.json" assert {type: "json"};
 import bcrypt from "bcrypt";
 
+
 db.once("open", async () => {
   try {
     await Promise.all([
