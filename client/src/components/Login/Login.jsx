@@ -1,12 +1,10 @@
-/* eslint-disable no-console */
-/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_MUTATION } from "../../utils/mutations";
 import { useDispatch } from "react-redux";
 import { setError, setUser, showSignUp } from "../../utils/authSlice";
-import SubmitButton from "../SubmitButton";
-import styles from "./Login.module.css"; // Assuming you have a CSS module for styling
+import styles from "./Login.module.css"; 
+import PropTypes from "prop-types";
 
 function Login({ onSuccess }) {
   const [login, { error }] = useMutation(LOGIN_MUTATION);
@@ -48,13 +46,10 @@ function Login({ onSuccess }) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.heading}>
-        <h1>Account Login</h1>
-        <p>Please enter you email and password below.</p>
-      </div>
+      <h2>Login</h2> {/* Change the title */}
       <form onSubmit={handleSubmit} className={styles.loginForm}>
         <div className={styles.inputGroup}>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
@@ -66,7 +61,7 @@ function Login({ onSuccess }) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -76,14 +71,22 @@ function Login({ onSuccess }) {
             required
           />
         </div>
-        <SubmitButton text="Login" />
-        {error && <p className={styles.error}>Error: {error.message}</p>}
-        <button className={styles.signUpLink} type="button" onClick={() => dispatch(showSignUp())}>
-          Need to sign up instead?
+        <button type="submit" className={styles.button}>
+          Login
         </button>
+        {error && <p className={styles.error}>Error: {error.message}</p>}
+        <div>
+          {/* Using the same style for both buttons */}
+          <button type="button" className={styles.button} onClick={() => dispatch(showSignUp())}>
+            Create Account
+          </button>
+        </div>
       </form>
     </div>
   );
 }
+Login.propTypes = {
+  onSuccess: PropTypes.func.isRequired,
+};
 
 export default Login;

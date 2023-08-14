@@ -39,6 +39,22 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.button {
+  /* Your styles for the button */
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: rgb(63, 63, 63);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-image: url('../../images/Button_Background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .error {
   color: var(--errorRed);
