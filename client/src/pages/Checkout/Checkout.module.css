@@ -12,6 +12,7 @@
     "button";
   gap: 2rem;
   margin-bottom: 4rem;
+  min-height: calc(100vh - 100px);
 }
 
 .heading {

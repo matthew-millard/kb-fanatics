@@ -44,6 +44,9 @@ const resolvers = {
         throw new Error("Error fetching orders");
       }
     },
+    getSingleOrder: async (_, { _id }) => {
+      return await Order.findById(_id);
+    },
     switches: async () => {
       try {
         return await Switch.find({});

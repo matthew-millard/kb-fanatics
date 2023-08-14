@@ -159,6 +159,7 @@ const typeDefs = gql`
   }
 
   type OrderDetail {
+    _id: ID!
     user: ID!
     firstName: String!
     lastName: String!
@@ -175,6 +176,7 @@ const typeDefs = gql`
   type Query {
     user(_id: ID!): User
     getUserOrders(_id: ID!): [OrderDetail!]!
+    getSingleOrder(_id: ID!): OrderDetail
     verifyToken(token: String!): User!
     switches: [SwitchModel]
     keyboards: [Keyboard]
