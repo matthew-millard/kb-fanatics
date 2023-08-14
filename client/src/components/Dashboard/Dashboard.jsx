@@ -5,7 +5,7 @@ import { USER_QUERY } from "../../utils/queries";
 import OrderHistory from "../OrderHistory";
 import styles from "./Dashboard.module.css";
 import dashboardImage from "../../images/Keyboard_warrior_icon.png";
-import dashboardImage2 from "../../images/Keyboard_warrior_icon2.png"; 
+import dashboardImage2 from "../../images/Keyboard_warrior_icon2.png";
 
 function Dashboard({ onLogOut }) {
   // Get user ID from local storage
@@ -64,6 +64,8 @@ function Dashboard({ onLogOut }) {
 
         <img src={dashboardImage2} alt="Dashboard Icon 2" className={styles.centerImage} />
       </div>
+      {/* Order History Section */}
+      <OrderHistory userId={userId} />
       {/* Logout Button */}
       <button type="button" onClick={onLogOut}>
         Logout
