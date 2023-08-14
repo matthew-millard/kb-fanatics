@@ -1,5 +1,6 @@
 .container {
   display: grid;
+  min-height: calc(100vh - 100px);
   grid-template-columns: 1fr;
   grid-template-rows: 50px auto auto;
   grid-template-areas:

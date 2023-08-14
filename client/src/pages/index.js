@@ -9,6 +9,7 @@ import MyAccount from "./MyAccount";
 import Checkout from "./Checkout";
 import OrderConfirmation from "./OrderConfirmation";
 import EmailVerification from "./EmailVerification";
+import OrderDetails from "./OrderDetails";
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   MyAccount,
   OrderConfirmation,
   EmailVerification,
+  OrderDetails,
 };

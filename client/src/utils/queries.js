@@ -106,6 +106,7 @@ export const VERIFY_TOKEN_QUERY = gql`
 export const USER_ORDERS_QUERY = gql`
   query GetUserOrders($_id: ID!) {
     getUserOrders(_id: $_id) {
+      _id
       orderItems {
         productId
         quantity
@@ -119,6 +120,27 @@ export const USER_ORDERS_QUERY = gql`
       orderTax
       createdAt
       updatedAt
+    }
+  }
+`;
+
+export const SINGLE_ORDER_QUERY = gql`
+  query GetSingleOrder($_id: ID!) {
+    getSingleOrder(_id: $_id) {
+      _id
+      orderTotal
+      orderSubTotal
+      orderTax
+      createdAt
+      updatedAt
+      orderItems {
+        productId
+        quantity
+        price
+        brand
+        model
+        image
+      }
     }
   }
 `;

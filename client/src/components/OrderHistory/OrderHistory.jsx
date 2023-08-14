@@ -2,10 +2,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import { USER_ORDERS_QUERY } from "../../utils/queries";
 import { resetNewOrderFlag } from "../../utils/orderSlice";
+import formatDate from "../../utils/formatDate";
 import styles from "./OrderHistory.module.css";
 
 function OrderHistory({ userId }) {
@@ -33,15 +35,16 @@ function OrderHistory({ userId }) {
   const orders = data ? data.getUserOrders : [];
 
   return (
-    <div>
+    <div className={styles.container}>
       <h3>Order History</h3>
 
       {orders.length === 0 ? (
         <p>You currently don&apos;t have any orders.</p>
       ) : (
-        orders.map((order, index) => (
-          <div key={index} className={styles.order}>
-            <p>{order.createdAt}</p>
+        orders.map((order) => (
+          <div key={order._id} className={styles.order}>
+            <p>{formatDate(order.createdAt)}</p>
+            <Link to={`/order/${order._id}`}>{order._id}</Link>
           </div>
         ))
       )}
