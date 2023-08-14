@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_MUTATION } from "../../utils/mutations";
 import { useDispatch } from "react-redux";
 import { setError, setUser, showSignUp } from "../../utils/authSlice";
-import styles from "./Login.module.css"; 
+import styles from "./Login.module.css";
 import PropTypes from "prop-types";
 
 function Login({ onSuccess }) {

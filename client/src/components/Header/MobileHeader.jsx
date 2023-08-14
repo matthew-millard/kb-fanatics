@@ -22,7 +22,7 @@ function MobileHeader() {
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    navigate("/login");
+    navigate("/myaccount");
   };
 
   return (
@@ -47,7 +47,7 @@ function MobileHeader() {
               </button>
             </>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link to="/myaccount">Login</Link>
           )}
           <Cart />
         </div>
