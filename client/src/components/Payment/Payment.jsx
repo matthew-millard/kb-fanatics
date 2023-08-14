@@ -4,12 +4,15 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useMutation } from "@apollo/client";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../../utils/cartSlice";
+import { toggleNewOrderAdded } from "../../utils/orderSlice";
 import { CREATE_PAYMENT_INTENT, CREATE_ORDER } from "../../utils/mutations";
 import { ClipLoader } from "react-spinners";
 import styles from "./Payment.module.css";
 
 function Payment({ setPaymentHandler }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -118,6 +121,16 @@ function Payment({ setPaymentHandler }) {
           throw new Error("Failed to create order.");
         }
 
+        // This will trigger a refetch of the user's order history
+        dispatch(toggleNewOrderAdded());
+
+        // Clear the cart
+        localStorage.removeItem("cart");
+
+        // Clear the cart in Redux state
+        dispatch(clearCart());
+
+        // Redirect to the order confirmation page
         navigate("/order-confirmation"); // Redirect to the order confirmation page
       } catch (orderCreationError) {
         console.error("Error during order creation:", orderCreationError.message);

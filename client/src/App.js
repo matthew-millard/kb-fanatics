@@ -7,6 +7,7 @@ import { Provider, useDispatch } from "react-redux";
 import { VERIFY_TOKEN_QUERY } from "./utils/queries";
 import cartReducer from "./utils/cartSlice";
 import authReducer, { setError, setUser } from "./utils/authSlice";
+import orderReducer from "./utils/orderSlice";
 import cartSaver from "./utils/cartSaver";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -17,6 +18,7 @@ const store = configureStore({
   reducer: {
     cart: cartReducer,
     auth: authReducer,
+    orders: orderReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cartSaver),
 });

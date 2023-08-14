@@ -1,0 +1,17 @@
+.container {
+  /* background-color: aqua; */
+  min-height: calc(100vh - 100px);
+}
+
+.heading {
+  /* background-color: beige; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin-top: 4rem;
+  }
+}

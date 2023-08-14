@@ -2,6 +2,8 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { USER_QUERY } from "../../utils/queries";
+import OrderHistory from "../OrderHistory";
+import styles from "./Dashboard.module.css";
 
 function Dashboard({ onLogOut }) {
   // Get user ID from local storage
@@ -18,16 +20,19 @@ function Dashboard({ onLogOut }) {
   });
 
   if (loading) return <p>Loading...</p>;
+
   if (error) return <p>Error: {error.message}</p>;
 
   const user = userData?.user;
 
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
+    <div className={styles.container}>
+      <div className={styles.heading}>
+        <h1>Dashboard</h1>
+      </div>
 
       {/* User Details Section */}
-      <div className="user-details">
+      <div className={styles.userDetails}>
         <h3>User Details</h3>
         <p>
           <strong>Name:</strong> {user.firstName} {user.lastName}
@@ -50,6 +55,10 @@ function Dashboard({ onLogOut }) {
         <p>
           <strong>Postal Code:</strong> {user.postalCode}
         </p>
+      </div>
+
+      <div className={styles.orderHistory}>
+        <OrderHistory userId={userId} />
       </div>
 
       {/* Logout Button */}
