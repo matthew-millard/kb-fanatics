@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logIn, logOut, showSignUp, selectAuth } from "../../utils/authSlice";
+import { logIn, logOut, selectAuth } from "../../utils/authSlice";
 import SignUp from "../../components/SignUp";
 import Login from "../../components/Login";
 import Dashboard from "../../components/Dashboard";
