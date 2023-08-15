@@ -16,7 +16,6 @@ import OrderConfirmation from "./OrderConfirmation";
 import EmailVerification from "./EmailVerification";
 import OrderDetails from "./OrderDetails";
 
-
 export {
   Home,
   Keyboards,

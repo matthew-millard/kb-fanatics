@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useQuery } from "@apollo/client";
@@ -14,7 +15,7 @@ function Dashboard({ onLogOut }) {
   try {
     userDetails = JSON.parse(localStorage.getItem("user")) || {};
   } catch (error) {
-    console.error("Error parsing user data from local storage:", error);
+    console.errsor("Error parsing user data from local storage:", error);
   }
 
   const userId = userDetails?._id;

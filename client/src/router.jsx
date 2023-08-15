@@ -22,7 +22,6 @@ import {
   OrderDetails,
 } from "./pages";
 
-
 const router = createBrowserRouter([
   {
     element: <App />,
