@@ -121,6 +121,11 @@ const typeDefs = gql`
     image: String
   }
 
+  type Refund {
+    email: String
+    refundReason: String
+  }
+
   input CreateOrderInput {
     user: ID!
     firstName: String
@@ -131,6 +136,11 @@ const typeDefs = gql`
     subTotal: Float
     tax: Float
     items: [OrderItemInput!]
+  }
+
+  input CreateRefundInput {
+    email: String
+    refundReason: String
   }
 
   input ShippingAddressInput {
@@ -190,6 +200,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): AuthResponse
     createPaymentIntent(amount: Int!): PaymentIntentResponse!
     createOrder(input: CreateOrderInput!): Order!
+    createRefund(input: CreateRefundInput): Refund!
     verifyEmail(uniqueString: String!): VerificationResponse!
     resendVerificationEmail(email: String!): VerificationResponse!
   }

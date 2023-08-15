@@ -9,6 +9,7 @@ import cartReducer from "./utils/cartSlice";
 import authReducer, { setError, setUser } from "./utils/authSlice";
 import orderReducer from "./utils/orderSlice";
 import cartSaver from "./utils/cartSaver";
+import refundReducer from "./utils/refundSlice";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Footer, Header, MobileHeader } from "./components";
@@ -19,6 +20,7 @@ const store = configureStore({
     cart: cartReducer,
     auth: authReducer,
     orders: orderReducer,
+    refunds: refundReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cartSaver),
 });

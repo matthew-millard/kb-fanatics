@@ -246,6 +246,17 @@ const resolvers = {
         throw new Error(error.message || "Error creating the order");
       }
     },
+    createRefund: async (_, { email, refundReason }) => {
+      try {
+        const newRefunds = new Refunds({ email, refundReason });
+        const saveRefund = await newRefunds.save();
+
+        return saveRefund;
+      } catch (error) {
+        console.log("error", error);
+        return { success: false, error: error.message };
+      }
+    },
   },
 };
 export default resolvers;
