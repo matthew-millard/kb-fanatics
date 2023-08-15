@@ -6,8 +6,13 @@ import router from "./router";
 import "./reset.css";
 import "./index.css";
 
+// Dynamically set the GraphQL URI based on the environment
+const GRAPHQL_URI =
+  process.env.NODE_ENV === "production" ? "/graphql" : "http://localhost:3001/graphql";
+
+// Create the Apollo Client
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
+  uri: GRAPHQL_URI,
   cache: new InMemoryCache(),
 });
 
