@@ -9,8 +9,20 @@ import dashboardImage2 from "../../images/Keyboard_warrior_icon2.png";
 
 function Dashboard({ onLogOut }) {
   // Get user ID from local storage
-  const userDetails = JSON.parse(localStorage.getItem("user"));
-  const userId = userDetails._id;
+  let userDetails = {};
+
+  try {
+    userDetails = JSON.parse(localStorage.getItem("user")) || {};
+  } catch (error) {
+    console.error("Error parsing user data from local storage:", error);
+  }
+
+  const userId = userDetails?._id;
+
+  // Check if the user ID is valid
+  if (!userId) {
+    return <p>Please verify your account.</p>;
+  }
 
   // Fetch the user details when the component mounts
   const {
@@ -26,6 +38,10 @@ function Dashboard({ onLogOut }) {
   if (error) return <p>Error: {error.message}</p>;
 
   const user = userData?.user;
+
+  if (!user) {
+    return <p>Error: User details not found. Please try again later.</p>;
+  }
 
   return (
     <div className={styles.dashboardContainer}>
