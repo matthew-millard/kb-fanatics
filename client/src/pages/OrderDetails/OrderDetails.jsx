@@ -12,7 +12,7 @@ function OrderDetails() {
   if (loading) return <p>Loading order details...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const order = data ? data.getSingleOrder : null;
+  const order = data ? data.getSingleOrder : [];
 
   return (
     <div>
