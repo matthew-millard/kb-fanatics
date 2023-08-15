@@ -18,6 +18,10 @@
     "uploadDeskmatImages": "cd server && node scripts/uploadDeskmatImagesToS3.js",
     "uploadAccessoryImages": "cd server && node scripts/uploadAccessoryImagesToS3.js"
   },
+  "engines": {
+    "node": "16.20.1",
+    "npm": "8.19.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matthew-millard/kb-fanatics.git"
