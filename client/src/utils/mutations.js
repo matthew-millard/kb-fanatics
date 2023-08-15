@@ -36,6 +36,16 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `;
+export const REFUND_MUTATION = gql`
+  mutation createRefund($email: String!, $refundReason: String!) {
+    createRefund(email: $email, refundReason: $refundReason) {
+      refund {
+        email
+        refundReason
+      }
+    }
+  }
+`;
 
 export const CREATE_PAYMENT_INTENT = gql`
   mutation CreatePaymentIntent($amount: Int!) {
