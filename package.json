@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/matthew-millard/kb-fanatics/issues"
   },
-  "homepage": "https://github.com/matthew-millard/kb-fanatics#readme"
+  "homepage": "https://github.com/matthew-millard/kb-fanatics#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
 }
