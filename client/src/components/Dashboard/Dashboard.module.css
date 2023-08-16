@@ -67,7 +67,7 @@
   width: 100%;
 }
 
-/* Assuming the variable --white is defined somewhere in your CSS or another CSS file */
+
 :root {
   --white: #ffffff;
 }
