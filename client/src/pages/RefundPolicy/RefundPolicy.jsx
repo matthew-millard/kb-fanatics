@@ -13,7 +13,7 @@ function RefundPolicy() {
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     dispatch(toggleNewRefundAdded);
   };
 
