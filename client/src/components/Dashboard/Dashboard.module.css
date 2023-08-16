@@ -1,3 +1,10 @@
+.siteLogo {
+  width: auto;
+  height: auto;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
 .dashboardContainer {
   min-height: calc(100vh - 100px);
   width: 80%;
@@ -8,18 +15,30 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Horizontal centering */
-  justify-content: center; /* Vertical centering */
+  align-items: center; 
+  justify-content: flex-start; 
+  box-sizing: border-box;
 }
 
-@keyframes fadeInSlideUp {
+@keyframes slideInFromRight {
   0% {
+    transform: translateX(100%);
     opacity: 0;
-    transform: translateY(50px);
   }
   100% {
+    transform: translateX(0);
     opacity: 1;
-    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -27,21 +46,70 @@
   width: 300px;
   height: auto;
   margin: 20px 0;
-  animation: fadeInSlideUp 1s ease-out forwards;
 }
 
-/* Here is where you adjust timings or effects on the second image*/
-.centerImage:nth-child(2) {
-  animation-delay: 0.5s; /* delay the second image's animation slightly */
+.imageFromLeft {
+  animation: slideInFromLeft 2s ease-out forwards;
 }
-.user-details,
-.Dashboard {
+
+.imageFromRight {
+  animation: slideInFromRight 2s ease-out forwards;
+}
+
+.userDetails {
   text-align: center;
 }
 
 .contentWrapper {
-  display: flex; /* Le flexbox layout */
-  justify-content: space-between; /* Distribute items on both ends */
-  align-items: center; /* Align items vertically in the center */
-  width: 100%; /* Take full width of the parent container */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+:root {
+  --white: #ffffff;
+}
+
+h1 {
+  padding: 20px;
+}
+.logoutButton {
+  padding: 10px 20px;
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 0; /* Add some top margin for spacing */
+}
+
+.logoutButton:hover {
+  background-color: rgb(56, 53, 53);
+}
+
+
+/* Mobile Setting */
+@media (max-width: 768px) {
+  .dashboardContainer {
+    width: 95%;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+  
+  .centerImage {
+    display: none; /* Hide images on mobile */
+  }
+  
+  .contentWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .userDetails {
+    text-align: left;
+    max-width: 90%;
+    margin: 0 auto;
+  }
 }

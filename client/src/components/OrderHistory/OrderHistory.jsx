@@ -39,12 +39,22 @@ function OrderHistory({ userId }) {
       <h3>Order History</h3>
 
       {orders.length === 0 ? (
-        <p>You currently don&apos;t have any orders.</p>
+        <div className={styles.order}>
+          <p>You currently don&apos;t have any orders.</p>
+        </div>
       ) : (
         orders.map((order) => (
           <div key={order._id} className={styles.order}>
-            <p>{formatDate(order.createdAt)}</p>
-            <Link to={`/order/${order._id}`}>{order._id}</Link>
+            <div className={styles.orderInfo}>
+              <p>
+                <span>Order Date: </span>
+                {formatDate(order.createdAt)}
+              </p>
+              <p>
+                <span>Order Number: </span>
+                <Link to={`/order/${order._id}`}>{order._id}</Link>
+              </p>
+            </div>
           </div>
         ))
       )}

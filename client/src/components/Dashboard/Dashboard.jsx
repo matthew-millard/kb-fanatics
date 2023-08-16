@@ -7,6 +7,7 @@ import OrderHistory from "../OrderHistory";
 import styles from "./Dashboard.module.css";
 import dashboardImage from "../../images/Keyboard_warrior_icon.png";
 import dashboardImage2 from "../../images/Keyboard_warrior_icon2.png";
+import siteLogo from "../../images/site_logo.png";
 
 function Dashboard({ onLogOut }) {
   // Get user ID from local storage
@@ -46,15 +47,16 @@ function Dashboard({ onLogOut }) {
 
   return (
     <div className={styles.dashboardContainer}>
-      {" "}
-      {/* Updated to use the imported styles */}
+      <img src={siteLogo} alt="Site Logo" className={styles.siteLogo} />
       <h1>Welcome Keyboard Warriors!</h1>
       <div className={styles.contentWrapper}>
-        <img src={dashboardImage} alt="Dashboard Icon 1" className={styles.centerImage} />
+        <img
+          src={dashboardImage}
+          alt="Dashboard Icon 1"
+          className={`${styles.centerImage} ${styles.imageFromLeft}`}
+        />
 
         <div className={styles.userDetails}>
-          {" "}
-          {/* User Details Section */}
           <h3>User Details</h3>
           <p>
             <strong>Name:</strong> {user.firstName} {user.lastName}
@@ -79,12 +81,16 @@ function Dashboard({ onLogOut }) {
           </p>
         </div>
 
-        <img src={dashboardImage2} alt="Dashboard Icon 2" className={styles.centerImage} />
+        <img
+          src={dashboardImage2}
+          alt="Dashboard Icon 2"
+          className={`${styles.centerImage} ${styles.imageFromRight}`}
+        />
       </div>
       {/* Order History Section */}
       <OrderHistory userId={userId} />
       {/* Logout Button */}
-      <button type="button" onClick={onLogOut}>
+      <button type="button" onClick={onLogOut} className={styles.logoutButton}>
         Logout
       </button>
     </div>
