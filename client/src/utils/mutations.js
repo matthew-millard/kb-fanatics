@@ -104,3 +104,19 @@ export const VERIFY_EMAIL = gql`
     }
   }
 `;
+
+export const EMAILCHECK_MUTATION = gql`
+  mutation EmailCheck($email: String!) {
+    emailCheck(email: $email) {
+      success
+    }
+  }
+`;
+export const RESET_PASSWORD_MUTATION = gql`
+  mutation ResetPassword($email: String!, $password: String!) {
+    resetPassword(email: $email, password: $password) {
+      success
+      message
+    }
+  }
+`;

@@ -12,6 +12,7 @@ import bcrypt from "bcrypt";
 import Stripe from "stripe";
 import { generateToken, verifyTokenFunction } from "../utils/authService.js";
 import { sendVerificationEmail } from "../utils/sendVerificationEmail.js";
+import { sendPasswordResetEmail } from "../utils/sendPasswordResetEmail.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -153,6 +154,29 @@ const resolvers = {
 
       // Return success message
       return { success: true, message: "Email verified successfully!" };
+    },
+    emailCheck: async (_, { email }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      await sendPasswordResetEmail({ email });
+      return { success: true };
+    },
+    resetPassword: async (_, { email, password }) => {
+      const user = await User.findOne({ email });
+      console.log(user);
+      // Salt & hash the password
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      // Replace plain password with hashed one
+      const newPassword = hashedPassword;
+
+      user.password = newPassword;
+      await user.save();
+      return { success: true, message: "Password updated successfully" };
     },
     resendVerificationEmail: async (_, { email }) => {
       const user = await User.findOne({ email });

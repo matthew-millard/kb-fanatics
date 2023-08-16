@@ -182,6 +182,13 @@ const typeDefs = gql`
     createdAt: String!
     updatedAt: String!
   }
+  type EmailCheckResponse {
+    success: Boolean!
+  }
+  type PasswordResetResponse {
+    success: Boolean!
+    message: String!
+  }
 
   type Query {
     user(_id: ID!): User
@@ -203,6 +210,8 @@ const typeDefs = gql`
     createRefund(input: CreateRefundInput): Refund!
     verifyEmail(uniqueString: String!): VerificationResponse!
     resendVerificationEmail(email: String!): VerificationResponse!
+    emailCheck(email: String!): EmailCheckResponse!
+    resetPassword(email: String!, password: String!): PasswordResetResponse!
   }
 `;
 

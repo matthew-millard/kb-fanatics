@@ -6,9 +6,15 @@ import { useDispatch } from "react-redux";
 import { setError, setUser, showSignUp } from "../../utils/authSlice";
 import styles from "./Login.module.css";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 function Login({ onSuccess }) {
   const [login, { error }] = useMutation(LOGIN_MUTATION);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/forgot-password"); 
+  }; 
 
   const [formData, setFormData] = useState({
     email: "",
@@ -82,6 +88,17 @@ function Login({ onSuccess }) {
             Create Account
           </button>
         </div>
+
+        {/* forgot password code */}
+        <p className={styles.forgotPasswordLink}>
+          <button
+            className={styles.linkButton}
+            type="button"
+            onClick={ handleClick }
+          >
+            Forgot Password?
+          </button>
+        </p>
       </form>
     </div>
   );
