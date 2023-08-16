@@ -15,6 +15,7 @@ import Checkout from "./Checkout";
 import OrderConfirmation from "./OrderConfirmation";
 import EmailVerification from "./EmailVerification";
 import OrderDetails from "./OrderDetails";
+import ForgotPassword from "./ForgotPassword";
 
 export {
   Home,
@@ -34,4 +35,5 @@ export {
   OrderConfirmation,
   EmailVerification,
   OrderDetails,
+  ForgotPassword,
 };

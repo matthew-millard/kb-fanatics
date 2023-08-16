@@ -20,6 +20,7 @@ import {
   OrderConfirmation,
   EmailVerification,
   OrderDetails,
+  ForgotPassword,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
       { path: "/terms-of-service", element: <TermsOfService /> },
       { path: "/user/verify/:uniqueString", element: <EmailVerification /> },
       { path: "/order/:orderId", element: <OrderDetails /> },
+      { path: "/forgot-password", element: <ForgotPassword /> },
     ],
   },
 ]);
