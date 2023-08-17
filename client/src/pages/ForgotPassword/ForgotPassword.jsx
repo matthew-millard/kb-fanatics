@@ -2,11 +2,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { EMAILCHECK_MUTATION } from "../../utils/mutations";
-// import { sendPasswordResetEmail } from "../../utils/emailUtils";
-// import SubmitButton from "../SubmitButton";
 import styles from "./ForgotPassword.module.css";
-
-let userExists = false;
 
 function ForgotPassword() {
   const [emailCheck, { errorEmailCheck }] = useMutation(EMAILCHECK_MUTATION);
@@ -18,7 +14,6 @@ function ForgotPassword() {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log(e.target.value);
   };
 
   const checkUserExistence = async () => {
@@ -27,29 +22,23 @@ function ForgotPassword() {
         variables: { email },
       });
 
-      userExists = response?.data?.emailCheck?.success;
+      return response?.data?.emailCheck?.success;
 
       // return userExists;
-      console.log(response);
-      console.log(userExists);
-      return true;
     } catch (err) {
+      console.error("Error checking email:", err);
       return false;
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
     setIsLoading(true);
 
     try {
-      userExists = await checkUserExistence();
+      const userExists = await checkUserExistence();
 
       if (userExists) {
-        // Send the password reset email using the utility function
-        // await sendPasswordResetEmail({ email });
-        // return <p>Password reset email sent. Please check your email</p>;
         setSuccessMessage("Password reset email sent. Please check your inbox.");
       } else {
         setErrorMessage("User with this email does not exist.");
@@ -61,14 +50,27 @@ function ForgotPassword() {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      {" "}
-      <label htmlFor="email">Email: </label>{" "}
-      <input type="email" name="email" id="email" onChange={handleEmailChange} required />
-      <button type="submit">Send reset</button>
-      {errorEmailCheck && <p>Error: {errorEmailCheck.message}</p>}
-      {userExists ? <p>{successMessage}</p> : <p>{errorMessage}</p>}
-    </form>
+    <div className={styles.container}>
+      <div>
+        <h1 className={styles.heading}>Forgot Password</h1>
+        <p>
+          Please enter your email address below and we will send you a link to reset your password.
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        {" "}
+        <div className={styles.inputGroup}>
+          <label htmlFor="email">Email: </label>{" "}
+          <input type="email" name="email" id="email" onChange={handleEmailChange} required />
+        </div>
+        <button type="submit" className={styles.button} disabled={isLoading}>
+          {isLoading ? "Sending..." : "Reset Password"}
+        </button>
+        {errorEmailCheck && <p>Error: {errorEmailCheck.message}</p>}
+        {successMessage ? <p>{successMessage}</p> : <p>{errorMessage}</p>}
+      </form>
+    </div>
   );
 }
 
