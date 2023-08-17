@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
@@ -11,7 +12,7 @@ const GRAPHQL_URI =
   process.env.NODE_ENV === "production" ? "/graphql" : "http://localhost:3001/graphql";
 
 // Create the Apollo Client
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: GRAPHQL_URI,
   cache: new InMemoryCache(),
 });
