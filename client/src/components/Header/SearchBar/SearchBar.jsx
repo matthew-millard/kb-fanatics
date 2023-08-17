@@ -12,7 +12,7 @@ function SearchBar() {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    // console.log("Submitted");
+    console.log(searchTerm);
   };
 
   return (
@@ -29,6 +29,8 @@ function SearchBar() {
       </button>
     </form>
   );
-}
+} 
 
+
+      
 export default SearchBar;
