@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(2, auto);
+  gap: 2rem;
 }
 
 .heading {
@@ -12,8 +13,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem;
   text-align: center;
+  font-size: 3rem;
 }
 
 .loginForm {
@@ -39,6 +40,16 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.linkButton {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .button {
   /* Your styles for the button */
   width: 100%;
@@ -62,6 +73,11 @@
 
 @media (min-width: 768px) {
   .container {
-    margin-top: 20rem;
+    margin-top: 16rem;
+  }
+
+  .heading {
+    margin-bottom: 2rem;
+    font-size: 4rem;
   }
 }

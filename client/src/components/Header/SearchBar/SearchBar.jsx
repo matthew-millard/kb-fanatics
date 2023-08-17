@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/pro-light-svg-icons";
@@ -29,8 +30,6 @@ function SearchBar() {
       </button>
     </form>
   );
-} 
+}
 
-
-      
 export default SearchBar;

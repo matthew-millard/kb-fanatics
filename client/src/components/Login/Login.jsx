@@ -13,8 +13,8 @@ function Login({ onSuccess }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/forgot-password"); 
-  }; 
+    navigate("/forgot-password");
+  };
 
   const [formData, setFormData] = useState({
     email: "",
@@ -53,7 +53,7 @@ function Login({ onSuccess }) {
 
   return (
     <div className={styles.container}>
-      <h2>Login</h2> {/* Change the title */}
+      <h2 className={styles.heading}>Login</h2>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
         <div className={styles.inputGroup}>
           <label htmlFor="email">Email</label>
@@ -91,11 +91,7 @@ function Login({ onSuccess }) {
 
         {/* forgot password code */}
         <p className={styles.forgotPasswordLink}>
-          <button
-            className={styles.linkButton}
-            type="button"
-            onClick={ handleClick }
-          >
+          <button className={styles.linkButton} type="button" onClick={handleClick}>
             Forgot Password?
           </button>
         </p>

@@ -1,5 +1,5 @@
-// ResetPassword.js
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-console */
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { RESET_PASSWORD_MUTATION } from "../../utils/mutations";
@@ -7,17 +7,16 @@ import styles from "./ResetPassword.module.css";
 
 function ResetPassword() {
   const [passwordReset, { error, data, loading }] = useMutation(RESET_PASSWORD_MUTATION);
-  const { uniqueString, email } = useParams(); // Get the uniqueString from the URL
-  // const [verifyEmail, { data, loading, error }] = useMutation(VERIFY_EMAIL);
+  const { email } = useParams(); // Get the email from the URL
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
   const [password, setPassword] = useState({ password: "" });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(password, email);
+
     try {
       const response = await passwordReset({ variables: { email: email, password: password } });
-      console.log(response);
+
       if (!response.data.resetPassword.success) {
         throw new Error("Password reset failed");
       }
@@ -30,19 +29,24 @@ function ResetPassword() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {data && data.resetPassword && data.resetPassword.success ? (
         <div>
           <p>{data.resetPassword.message}</p>
-          <button type="button" onClick={() => navigate("/myaccount")}>
+          <button className={styles.button} type="button" onClick={() => navigate("/myaccount")}>
             Login to continue
           </button>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
-          <label htmlFor="password">Enter new Password</label>
-          <input type="password" id="password" name="password" onChange={handleChange} />
-          <button type="submit">Submit new Password</button>
+          <div className={styles.inputGroup}>
+            <label htmlFor="password">Enter new Password</label>
+            <input type="password" id="password" name="password" onChange={handleChange} />
+          </div>
+          <button className={styles.button} type="submit" disabled={loading}>
+            {loading ? "Processing..." : "Set new password"}
+          </button>
+          {error && <p className={styles.error}>Error: {error.message}</p>}
         </form>
       )}
     </div>
