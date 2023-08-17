@@ -2,9 +2,11 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { SINGLE_ORDER_QUERY } from "../../utils/queries";
+import formatDate from "../../utils/formatDate";
+import styles from "./OrderDetails.module.css";
 
 function OrderDetails() {
-  const { orderId } = useParams(); // Extract the orderId from the URL
+  const { orderId } = useParams();
   const { data, loading, error } = useQuery(SINGLE_ORDER_QUERY, {
     variables: { _id: orderId },
   });
@@ -15,22 +17,26 @@ function OrderDetails() {
   const order = data ? data.getSingleOrder : [];
 
   return (
-    <div>
-      <h3>Order ID: {order._id}</h3>
-      <p>Total: {order.orderTotal}</p>
-      <p>Subtotal: {order.orderSubTotal}</p>
-      <p>Tax: {order.orderTax}</p>
+    <div className={styles.orderDetails}>
+      <h3 className={styles.orderId}>Order ID: {order._id}</h3>
+      <div className={styles.orderSummary}>
+        <p>Order Date: {formatDate(order.createdAt)}</p>
+        <p>Subtotal: ${order.orderSubTotal}</p>
+        <p>Tax: ${order.orderTax}</p>
+        <p>Total: ${order.orderTotal}</p>
+      </div>
       <h4>Items:</h4>
       {order.orderItems.map((item) => (
-        <div key={item.productId}>
-          <img src={item.image} alt={item.model} />
-          <p>Brand: {item.brand}</p>
-          <p>Model: {item.model}</p>
-          <p>Quantity: {item.quantity}</p>
-          <p>Price: {item.price}</p>
+        <div key={item.productId} className={styles.orderItem}>
+          <img src={item.image} alt={item.model} className={styles.orderItemImage} />
+          <div className={styles.orderItemDetails}>
+            <p>Brand: {item.brand}</p>
+            <p>Model: {item.model}</p>
+            <p>Quantity: {item.quantity}</p>
+            <p>Price: ${item.price}</p>
+          </div>
         </div>
       ))}
-      {/* ... any other details you'd like to display */}
     </div>
   );
 }
