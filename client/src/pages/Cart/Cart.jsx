@@ -8,10 +8,16 @@ import SubmitButton from "../../components/SubmitButton";
 import styles from "./Cart.module.css";
 
 function Cart() {
+  const authState = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const goToCheckout = () => {
-    navigate("/checkout");
+    if (!authState.isAuthenticated) {
+      // Redirect to the login page (assuming it's at '/login')
+      navigate("/myaccount");
+    } else {
+      navigate("/checkout");
+    }
   };
 
   const cart = useSelector((state) => {

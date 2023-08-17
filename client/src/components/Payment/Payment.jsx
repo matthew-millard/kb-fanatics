@@ -11,7 +11,7 @@ import { CREATE_PAYMENT_INTENT, CREATE_ORDER } from "../../utils/mutations";
 import { ClipLoader } from "react-spinners";
 import styles from "./Payment.module.css";
 
-function Payment({ setPaymentHandler }) {
+function Payment({ setPaymentHandler, user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stripe = useStripe();
@@ -25,9 +25,6 @@ function Payment({ setPaymentHandler }) {
   const tax = subTotal * 0.13;
   const shipping = subTotal > 100 ? 0 : 10;
   const total = subTotal + tax + shipping;
-
-  // Fetch user from global state
-  const user = useSelector((state) => state.auth.user);
 
   const CARD_ELEMENT_OPTIONS = {
     style: {
@@ -148,6 +145,9 @@ function Payment({ setPaymentHandler }) {
     }
   }, [setPaymentHandler]);
 
+  if (!stripe || !elements) {
+    return <div className={styles.loading}>Initializing payment options...</div>;
+  }
   return (
     <div className={styles.container}>
       <div>

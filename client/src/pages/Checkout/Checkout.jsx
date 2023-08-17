@@ -25,8 +25,9 @@ function Checkout() {
     }
   };
 
-  // Fetch user from global state
-  const user = useSelector((state) => state.auth.user);
+  // Fetch user from local storage first, if not present then from global state
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : useSelector((state) => state.auth.user);
 
   return (
     <div className={styles.container}>
@@ -40,7 +41,10 @@ function Checkout() {
         <OrderSummary cart={cart} />
       </div>
       <div className={styles.paymentDetails}>
-        <Payment setPaymentHandler={(handler) => (paymentHandlerRef.current = handler)} />
+        <Payment
+          setPaymentHandler={(handler) => (paymentHandlerRef.current = handler)}
+          user={user}
+        />
       </div>
       <div className={styles.button}>
         <SubmitButton text="Place Order" onClick={handleOrderSubmit} />
