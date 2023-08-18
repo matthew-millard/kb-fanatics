@@ -128,10 +128,15 @@ Here is an explanation of the settings:
 - dotenv ^16.3.1
 - express ^4.18.2
 - mongoose ^7.4.3
+- aws-sdk ^2.1430.0
+- jsonwebtoken ^9.0.1
+- nodemailer ^6.9.4
+- uuidv4 ^6.2.13
 - eslint ^8.42.0
 - prettier ^2.8.8
 - bcrypt ^5.1.0
 - nodemon ^2.0.22
+- concurrently ^8.2.0
 
 ## Contributors
 
