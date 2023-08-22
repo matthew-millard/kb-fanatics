@@ -69,9 +69,11 @@ function Dashboard({ onLogOut }) {
           <strong>Postal Code:</strong> {user.postalCode}
         </p>
       </div>
-
+      <hr />
       {/* Order History Section */}
-      <OrderHistory userId={userId} />
+      <div className={styles.orderHistoryContainer}>
+        <OrderHistory userId={userId} />
+      </div>
 
       {/* Logout Button */}
       <div className={styles.buttonsContainer}>
