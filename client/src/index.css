@@ -74,7 +74,6 @@ a {
   color: var(--white);
   text-decoration: underline;
   letter-spacing: 0.05em;
-  text-decoration-thickness: 1px;
   text-underline-offset: 0.3ex;
   text-decoration-color: var(--white);
   transition: text-underline-offset 150ms ease-in-out;
