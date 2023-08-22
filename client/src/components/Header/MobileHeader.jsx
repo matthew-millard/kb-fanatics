@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/pro-light-svg-icons";
-import { NavLinks, Cart, SocialIcons, Logo } from "./Header";
+import { NavLinks, Cart, SocialIcons, Logo, Account } from "./Header";
 import styles from "./MobileHeader.module.css";
 import SearchBar from "./SearchBar";
 
@@ -47,7 +47,9 @@ function MobileHeader() {
               </button>
             </>
           ) : (
-            <Link to="/myaccount">Login</Link>
+            <Link to="/myaccount">
+              <Account />
+            </Link>
           )}
           <Cart />
         </div>
