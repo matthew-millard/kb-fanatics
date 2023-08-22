@@ -69,7 +69,7 @@ function Dashboard({ onLogOut }) {
           <strong>Postal Code:</strong> {user.postalCode}
         </p>
       </div>
-      <hr />
+      <hr className={styles.divider} />
       {/* Order History Section */}
       <div className={styles.orderHistoryContainer}>
         <OrderHistory userId={userId} />
