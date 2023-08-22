@@ -1,5 +1,5 @@
 .container {
-  margin: 0 auto;
+  margin: 0 auto 4rem;
   width: 90%;
   max-width: 900px;
   display: grid;
@@ -43,7 +43,7 @@
 }
 
 .controlsGroup {
-  margin: 0 auto;
+  margin: 2rem auto;
   width: 100%;
   max-width: 500px;
   /* grid-column: span 2; */
@@ -52,28 +52,46 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  
 }
 
 .error {
   color: var(--errorRed);
 }
-.Button  {
-  /* Your styles for the button */
-  width: 100%;
-  padding: 8px 16px;
-  font-size: 16px;
-  background-color: #007BFF;
-  color: rgb(63, 63, 63);
-  border: none;
-  border-radius: 4px;
+.button {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: var(--navy);
+  border-radius: 3px;
+  border-width: 0;
+  box-sizing: border-box;
+  color: var(--white);
   cursor: pointer;
-  transition: background-color 0.2s;
-  background-image: url('../../images/Button_Background.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  letter-spacing: 0.05em;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: background-color 300ms ease-in-out;
+  width: 100%;
 }
+
+.button:disabled {
+  cursor: default;
+}
+
+.button:hover {
+  background-color: var(--vlight-navy);
+}
+
 @media (min-width: 769px) {
   .container {
     margin-top: 6rem;
