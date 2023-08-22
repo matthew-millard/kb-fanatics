@@ -103,8 +103,11 @@ Here is an explanation of the settings:
 - Mongoose
 - ExpressJS
 - NodeJS
-
 - Apollo Server
+- Stripe Payment
+- Redux
+- JSON Web Token
+- NodeMailer
 
 ## Node Packages Used
 
