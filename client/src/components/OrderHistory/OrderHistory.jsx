@@ -30,13 +30,11 @@ function OrderHistory({ userId }) {
   if (loading) return <p>Loading orders...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log(data);
-
   const orders = data ? data.getUserOrders : [];
 
   return (
     <div className={styles.container}>
-      <h3>Order History</h3>
+      <h3 className={styles.heading}>Order History</h3>
 
       {orders.length === 0 ? (
         <div className={styles.order}>
@@ -46,14 +44,14 @@ function OrderHistory({ userId }) {
         orders.map((order) => (
           <div key={order._id} className={styles.order}>
             <div className={styles.orderInfo}>
-              <p>
+              <div className={styles.orderDateContainer}>
                 <span>Order Date: </span>
-                {formatDate(order.createdAt)}
-              </p>
-              <p>
+                <p>{formatDate(order.createdAt)}</p>
+              </div>
+              <div>
                 <span>Order Number: </span>
                 <Link to={`/order/${order._id}`}>{order._id}</Link>
-              </p>
+              </div>
             </div>
           </div>
         ))
