@@ -3,7 +3,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: 'logo menuIcon';
+  grid-template-areas: "logo menuIcon";
 }
 
 .logo {
@@ -34,12 +34,12 @@
   grid-template-columns: 40px auto 40px;
   grid-template-rows: 100px 100px auto 100px 100px 1fr;
   grid-template-areas:
-    '. . .'
-    '. user .'
-    '. links .'
-    '. search .'
-    '. social .'
-    '. . .';
+    ". . ."
+    ". user ."
+    ". links ."
+    ". search ."
+    ". social ."
+    ". . .";
   position: fixed;
   top: 0;
   right: 0;
@@ -70,7 +70,7 @@
   grid-area: user;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .searchBar {
