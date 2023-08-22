@@ -1,115 +1,89 @@
-.siteLogo {
-  width: auto;
-  height: auto;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
 .dashboardContainer {
+  margin: 0 auto;
   min-height: calc(100vh - 100px);
-  width: 80%;
-  margin: 2rem auto;
-  padding: 20px;
-  border: 1px solid var(--white);
-  border-radius: 8px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  width: 100%;
+  max-width: 500px;
+}
+
+.heading {
   display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: flex-start; 
-  box-sizing: border-box;
-}
-
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.centerImage {
-  width: 300px;
-  height: auto;
-  margin: 20px 0;
-}
-
-.imageFromLeft {
-  animation: slideInFromLeft 2s ease-out forwards;
-}
-
-.imageFromRight {
-  animation: slideInFromRight 2s ease-out forwards;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .userDetails {
-  text-align: center;
-}
-
-.contentWrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  height: 100%;
+  margin-bottom: 2rem;
+}
+
+.userDetails h3 {
+  margin-bottom: 2rem;
+}
+
+.userDetails > p strong {
+  padding: 3px 5px;
+  background-color: var(--navy);
+  letter-spacing: 0.1rem;
+}
+
+.orderHistoryContainer {
+  margin-top: 2rem;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  height: 100%;
 }
 
-
-:root {
-  --white: #ffffff;
-}
-
-h1 {
-  padding: 20px;
-}
 .logoutButton {
-  padding: 10px 20px;
-  background-color: grey;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: var(--navy);
+  border-radius: 3px;
+  border-width: 0;
+  box-sizing: border-box;
+  color: var(--white);
   cursor: pointer;
-  margin-top: 0; /* Add some top margin for spacing */
+  font-size: 1.6rem;
+  font-weight: 600;
+  height: 44px;
+  line-height: 1.15;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  letter-spacing: 0.05em;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: background-color 300ms ease-in-out;
+  width: 100%;
+  max-width: 500px;
+}
+
+.logoutButton:disabled {
+  cursor: default;
 }
 
 .logoutButton:hover {
-  background-color: rgb(56, 53, 53);
+  background-color: var(--vlight-navy);
 }
 
-
-/* Mobile Setting */
-@media (max-width: 768px) {
-  .dashboardContainer {
-    width: 95%;
-    margin: 1rem auto;
-    padding: 1rem;
-  }
-  
-  .centerImage {
-    display: none; /* Hide images on mobile */
-  }
-  
-  .contentWrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .userDetails {
-    text-align: left;
-    max-width: 90%;
-    margin: 0 auto;
+@media (min-width: 768px) {
+  .orderHistoryContainer {
+    margin-top: 0;
   }
 }
