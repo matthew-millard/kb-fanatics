@@ -81,7 +81,6 @@ function Login({ onSuccess }) {
         <button type="submit" className={styles.button}>
           Login
         </button>
-        {error && <p className={styles.error}>Error: {error.message}</p>}
         <div>
           {/* Using the same style for both buttons */}
           <button type="button" className={styles.button} onClick={() => dispatch(showSignUp())}>
@@ -95,6 +94,7 @@ function Login({ onSuccess }) {
             Forgot Password?
           </button>
         </p>
+        {error && <p className={styles.error}>Error: {error.message}</p>}
       </form>
     </div>
   );
