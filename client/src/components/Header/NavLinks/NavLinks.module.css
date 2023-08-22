@@ -23,3 +23,9 @@
   align-items: center;
   line-height: 1;
 }
+
+.activeLink {
+  text-decoration-color: var(--blue);
+  color: var(--blue);
+  text-decoration-thickness: 2px;
+}
