@@ -171,13 +171,13 @@ function SignUp({ onSuccess }) {
         </div>
 
         <div className={styles.controlsGroup}>
-          <button className={styles.Button} type="submit" disabled={isLoading}>
+          <button className={styles.button} type="submit" disabled={isLoading}>
             {isLoading ? "Loading..." : "Sign Up"}
           </button>
-          {error && <p className={styles.error}>Error: {error.message}</p>}
           <button className={styles.loginLink} type="button" onClick={() => dispatch(showLogin())}>
             Already have an account? Log in here.
           </button>
+          {error && <p className={styles.error}>Error: {error.message}</p>}
         </div>
       </form>
     </div>
