@@ -84,7 +84,7 @@ Here is an explanation of the settings:
 
 [Github Repository](https://github.com/matthew-millard/kb-fanatics)
 
-[Deployed Website](https://kb-fanatics-2-c059b16fa22f.herokuapp.com/)
+[Deployed Website](https://kb-fanatics-43251b269cb7.herokuapp.com/)
 
 ## Screenshots
 
