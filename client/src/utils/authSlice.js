@@ -17,6 +17,8 @@ export const authSlice = createSlice({
     logOut: (state) => {
       state.isAuthenticated = false;
       state.status = "none";
+      state.user = null;
+      state.error = null;
     },
     showLogin: (state) => {
       state.status = "loggingIn";

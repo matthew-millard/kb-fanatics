@@ -40,7 +40,6 @@ function SignUp({ onSuccess }) {
 
     try {
       const response = await signup({ variables: { input: formData } });
-      console.log(response.data.signup);
 
       // Dispatch setUser action to store user data globally.
       dispatch(setUser(response.data.signup));

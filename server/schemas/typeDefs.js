@@ -182,10 +182,17 @@ const typeDefs = gql`
     createdAt: String!
     updatedAt: String!
   }
+
   type EmailCheckResponse {
     success: Boolean!
   }
+
   type PasswordResetResponse {
+    success: Boolean!
+    message: String!
+  }
+
+  type DeleteAccountResponse {
     success: Boolean!
     message: String!
   }
@@ -212,6 +219,7 @@ const typeDefs = gql`
     resendVerificationEmail(email: String!): VerificationResponse!
     emailCheck(email: String!): EmailCheckResponse!
     resetPassword(email: String!, password: String!): PasswordResetResponse!
+    deleteUser(_id: ID!): DeleteAccountResponse!
   }
 `;
 
