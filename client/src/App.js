@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
+import { ToastProvider } from "./hooks/ToastContext";
 import { Outlet } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { useQuery } from "@apollo/client";
@@ -95,7 +96,9 @@ function AppWrapper() {
   return (
     <Elements stripe={stripePromise}>
       <Provider store={store}>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </Provider>
     </Elements>
   );

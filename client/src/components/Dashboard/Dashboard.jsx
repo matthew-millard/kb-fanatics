@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useToast } from "../../hooks/ToastContext";
 import { logOut } from "../../utils/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
@@ -14,6 +15,7 @@ import styles from "./Dashboard.module.css";
 function Dashboard({ onLogOut }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { setToast } = useToast();
   const [deleteAccount, { loading: deleteLoading, error: deleteError }] =
     useMutation(DELETE_ACCOUNT_MUTATION);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,6 +77,9 @@ function Dashboard({ onLogOut }) {
 
       // Clear any user-related state
       dispatch(logOut());
+
+      // Display a success message
+      setToast(response.data.deleteUser.message);
 
       // Redirect to the home page
       navigate("/");
