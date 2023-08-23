@@ -228,6 +228,23 @@ const resolvers = {
         throw new Error(error.message);
       }
     },
+    deleteUser: async (_, { _id }) => {
+      try {
+        const userToDelete = await User.findById(_id);
+        if (!userToDelete) {
+          throw new Error("User not found");
+        }
+
+        // Delete all user's orders
+        await Order.deleteMany({ user: _id });
+
+        // Delete user
+        await User.findByIdAndDelete(_id);
+        return { success: true, message: "Your account has been deleted." };
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    },
     createPaymentIntent: async (_, { amount }) => {
       try {
         const paymentIntent = await stripe.paymentIntents.create({

@@ -51,7 +51,7 @@
   height: 100%;
 }
 
-.logoutButton {
+.buttons {
   appearance: button;
   backface-visibility: hidden;
   background-color: var(--navy);
@@ -75,7 +75,6 @@
   touch-action: manipulation;
   transition: background-color 300ms ease-in-out;
   width: 100%;
-  max-width: 500px;
 }
 
 .divider {
@@ -84,19 +83,45 @@
 
 .buttonsContainer {
   grid-area: buttons;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
-.logoutButton:disabled {
+.buttons:disabled {
   cursor: default;
 }
 
-.logoutButton:hover {
+.buttons:hover {
   background-color: var(--vlight-navy);
+}
+
+.deleteAccountButton {
+  background-color: var(--errorRed);
+}
+
+.deleteAccountButton:hover {
+  background-color: var(--errorRed-light);
+}
+
+@media (min-width: 576px) {
+  .buttons {
+    max-width: 200px;
+  }
 }
 
 @media (min-width: 768px) {
   .orderHistoryContainer {
     margin-top: 0;
+  }
+
+  .buttons {
+    max-width: 200px;
   }
 }
 
@@ -104,7 +129,7 @@
   .dashboardContainer {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(3, auto);
-    width: auto;
+    width: 100%;
     max-width: 900px;
     grid-template-areas:
       "heading heading"

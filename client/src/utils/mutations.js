@@ -120,3 +120,12 @@ export const RESET_PASSWORD_MUTATION = gql`
     }
   }
 `;
+
+export const DELETE_ACCOUNT_MUTATION = gql`
+  mutation DeleteUser($_id: ID!) {
+    deleteUser(_id: $_id) {
+      success
+      message
+    }
+  }
+`;

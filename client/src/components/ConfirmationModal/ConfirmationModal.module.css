@@ -1,0 +1,69 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  background: var(--vlight-navy);
+  color: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.button {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: var(--dark-navy);
+  border-radius: 3px;
+  border-width: 0;
+  box-sizing: border-box;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 600;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  letter-spacing: 0.05em;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: background-color 300ms ease-in-out;
+}
+
+.deleteButton {
+  background-color: var(--errorRed);
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+.button:hover {
+  background-color: var(--navy);
+}
+
+.deleteButton:hover {
+  background-color: var(--errorRed-light);
+}
